@@ -20,11 +20,16 @@ const Chat = () => {
   //   respuesta: [],
   //   submomento: [],
   // })
+
+  // Api data
   const [dataTipoLead, setDataTipoLead] = useState([])
   const [dataPrograma, setDataPrograma] = useState([])
   const [dataMomento, setDataMomento] = useState([])
   const [dataSubmomento, setDataSubmomento] = useState([])
   const [dataRespuesta, setDataRespuesta] = useState([])
+
+  // Chat state
+  const [selectedTipoLead, setSelectedTipoLead] = useState(dataTipoLead[0]?.nombre)
 
   useEffect(() => {
     async function loadAll() {
@@ -49,14 +54,21 @@ const Chat = () => {
 
         const tipoLead = await getTipoLead()
         setDataTipoLead(tipoLead.data)
-        console.log({ tipoLead })
+        setSelectedTipoLead(tipoLead.data[0]?.nombre)
       } catch (error) {
         console.error("Error fetching data:", error)
       }
     }
     loadAll()
   }, [])
+
+
+  useEffect(() => {
+    console.log({ selectedTipoLead })
+  }, [selectedTipoLead])
+
   //constantes para hacer pruebas pero el tipoleand funciona desde la constante 
+  const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
   const tipoLeadName = dataTipoLead.length > 0 ? dataTipoLead[0].nombre : "Seguimiento"
   const subMon = dataSubmomento
   const respuesta = dataRespuesta
@@ -113,19 +125,28 @@ const Chat = () => {
             </div>
 
             {/* toggle tipo lead */}
-            <div className="toggle">
+            <div className="toggle flex gap-4">
               <span className="text-sm font-medium">
-                {isNewLead ? "Desactivado" : tipoLeadName.charAt(0).toUpperCase() + tipoLeadName.slice(1).toLowerCase()}
+                {tipoLeadNames[0]}
               </span>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input
                   type="checkbox"
                   className="sr-only peer"
-                  checked={!isNewLead}
-                  onChange={() => setIsNewLead(!isNewLead)}
+                  checked={selectedTipoLead === tipoLeadNames[1]}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setSelectedTipoLead(tipoLeadNames[1])
+                    } else {
+                      setSelectedTipoLead(tipoLeadNames[0])
+                    }
+                  }}
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7D3C98]"></div>
               </label>
+              <span className="text-sm font-medium">
+                {tipoLeadNames[1]}
+              </span>
             </div>
           </div>
 
