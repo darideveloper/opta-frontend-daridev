@@ -30,6 +30,7 @@ const Chat = () => {
 
   // Chat state
   const [selectedTipoLead, setSelectedTipoLead] = useState(dataTipoLead[0]?.nombre)
+  const [selectedPrograma, setSelectedPrograma] = useState(null)
 
   useEffect(() => {
     async function loadAll() {
@@ -73,8 +74,8 @@ const Chat = () => {
 
   // Monitor chat state 
   useEffect(() => {
-    console.log({ selectedTipoLead })
-  }, [selectedTipoLead])
+    console.log({ selectedTipoLead, selectedPrograma })
+  }, [selectedTipoLead, selectedPrograma])
 
   //constantes para hacer pruebas pero el tipoleand funciona desde la constante 
   const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
@@ -159,7 +160,10 @@ const Chat = () => {
             </div>
           </div>
 
-          <select className="w-full p-2 border border-gray-300 rounded-md bg-[#7D3C98] text-white">
+          <select 
+            className="w-full p-2 border border-gray-300 rounded-md bg-[#7D3C98] text-white"
+            onChange={(e) => setSelectedPrograma(e.target.value)}
+          >
             <option value="">Programas</option>
             {dataPrograma.map((program) => (
               <option key={program.id} value={program.id}>
@@ -167,6 +171,7 @@ const Chat = () => {
               </option>
             ))}
           </select>
+
         </div>
         <div className="flex-1 overflow-y-auto p-4">
           {dataMomento.map((moment) => (
