@@ -1,22 +1,22 @@
 import axios from 'axios'
 export const getTipoLead = () => {
-    return axios.get(`http://127.0.0.1:8000/api/tipolead/`)
+    return axios.get(`${import.meta.env.VITE_API_HOST}/tipolead/`)
 }
 
-export const getPrograma = () => {
-    return axios.get(`http://127.0.0.1:8000/api/programa/`)
+export const getPrograma = (tipoleadId) => {
+    return axios.get(`${import.meta.env.VITE_API_HOST}/programa/?tipo_lead_id=${tipoleadId}`)
 }
 
 export const getMomento = () => {
-    return axios.get(`http://127.0.0.1:8000/api/momento/`)
+    return axios.get(`${import.meta.env.VITE_API_HOST}/momento/`)
 }
 
 export const getSubmomento = () => {
-    return axios.get(`http://127.0.0.1:8000/api/submomento/`)
+    return axios.get(`${import.meta.env.VITE_API_HOST}/submomento/`)
 }
 export const getRespuesta = () => {
-    return axios.get(`http://127.0.0.1:8000/api/respuesta/`)
+    return axios.get(`${import.meta.env.VITE_API_HOST}/respuesta/`)
 }
 export const getdocumento = () => {
-    return axios.get(`http://127.0.0.1:8000/api/documento/`)
+    return axios.get(`${import.meta.env.VITE_API_HOST}/documento/`)
 }

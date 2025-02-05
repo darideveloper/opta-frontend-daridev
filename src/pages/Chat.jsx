@@ -54,7 +54,7 @@ const Chat = () => {
 
         const tipoLead = await getTipoLead()
         setDataTipoLead(tipoLead.data)
-        setSelectedTipoLead(tipoLead.data[0]?.nombre)
+        setSelectedTipoLead(tipoLead.data[0]?.id)
       } catch (error) {
         console.error("Error fetching data:", error)
       }
@@ -62,7 +62,16 @@ const Chat = () => {
     loadAll()
   }, [])
 
+  // Update programs when change tipo lead
+  useEffect(() => {
+    if (selectedTipoLead === undefined) return
+    getPrograma(selectedTipoLead).then(programas => {
+      setDataPrograma(programas.data)
+    })
 
+  }, [selectedTipoLead])
+
+  // Monitor chat state 
   useEffect(() => {
     console.log({ selectedTipoLead })
   }, [selectedTipoLead])
@@ -133,12 +142,12 @@ const Chat = () => {
                 <input
                   type="checkbox"
                   className="sr-only peer"
-                  checked={selectedTipoLead === tipoLeadNames[1]}
+                  checked={selectedTipoLead === dataTipoLead[0]?.id}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      setSelectedTipoLead(tipoLeadNames[1])
+                      setSelectedTipoLead(dataTipoLead[0].id)
                     } else {
-                      setSelectedTipoLead(tipoLeadNames[0])
+                      setSelectedTipoLead(dataTipoLead[1].id)
                     }
                   }}
                 />
