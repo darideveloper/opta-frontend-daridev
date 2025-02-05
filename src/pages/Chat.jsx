@@ -29,8 +29,8 @@ const Chat = () => {
   const [dataRespuesta, setDataRespuesta] = useState([])
 
   // Chat state
-  const [selectedTipoLead, setSelectedTipoLead] = useState(dataTipoLead[0]?.id)
-  const [selectedPrograma, setSelectedPrograma] = useState(dataPrograma[0]?.id)
+  const [selectedTipoLead, setSelectedTipoLead] = useState(null)
+  const [selectedPrograma, setSelectedPrograma] = useState(null)
 
   useEffect(() => {
     async function loadAll() {
@@ -65,19 +65,28 @@ const Chat = () => {
 
   // Update programs when change tipo lead
   useEffect(() => {
-    if (selectedTipoLead === undefined) return
+    if (selectedTipoLead === null) {return}
+
+    // Update program options
     getPrograma(selectedTipoLead).then(programas => {
       setDataPrograma(programas.data)
     })
+
+    // Reset selected program
+    setSelectedPrograma(null)
 
   }, [selectedTipoLead])
 
   // Update moments when change program
   useEffect(() => {
-    if (selectedPrograma === undefined) return
-    getMomento(selectedPrograma).then(momentos => {
-      setDataMomento(momentos.data)
-    })
+    if (selectedPrograma === null) {
+      // Reset moments
+      setDataMomento([])
+    } else {
+      getMomento(selectedPrograma).then(momentos => {
+        setDataMomento(momentos.data)
+      })
+    }
   }, [selectedPrograma])
 
   // Monitor chat state 
