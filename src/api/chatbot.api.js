@@ -1,22 +1,25 @@
 import axios from 'axios'
+
+const endpoint = `${import.meta.env.VITE_API_HOST}`
+
 export const getTipoLead = () => {
-    return axios.get(`${import.meta.env.VITE_API_HOST}/tipolead/`)
+  return axios.get(`${endpoint}/tipolead/`)
 }
 
 export const getPrograma = (tipoleadId) => {
-    return axios.get(`${import.meta.env.VITE_API_HOST}/programa/?tipo_lead_id=${tipoleadId}`)
+  return axios.get(`${endpoint}/programa/?tipo_lead_id=${tipoleadId}`)
 }
 
-export const getMomento = () => {
-    return axios.get(`${import.meta.env.VITE_API_HOST}/momento/`)
+export const getMomento = (programaId) => {
+  return axios.get(`${endpoint}/momento/?programa_id=${programaId}`)
 }
 
 export const getSubmomento = () => {
-    return axios.get(`${import.meta.env.VITE_API_HOST}/submomento/`)
+  return axios.get(`${endpoint}/submomento/`)
 }
 export const getRespuesta = () => {
-    return axios.get(`${import.meta.env.VITE_API_HOST}/respuesta/`)
+  return axios.get(`${endpoint}/respuesta/`)
 }
 export const getdocumento = () => {
-    return axios.get(`${import.meta.env.VITE_API_HOST}/documento/`)
+  return axios.get(`${endpoint}/documento/`)
 }

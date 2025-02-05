@@ -72,6 +72,14 @@ const Chat = () => {
 
   }, [selectedTipoLead])
 
+  // Update moments when change program
+  useEffect(() => {
+    if (selectedPrograma === undefined) return
+    getMomento(selectedPrograma).then(momentos => {
+      setDataMomento(momentos.data)
+    })
+  }, [selectedPrograma])
+
   // Monitor chat state 
   useEffect(() => {
     console.log({ selectedTipoLead, selectedPrograma })
