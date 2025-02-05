@@ -29,8 +29,8 @@ const Chat = () => {
   const [dataRespuesta, setDataRespuesta] = useState([])
 
   // Chat state
-  const [selectedTipoLead, setSelectedTipoLead] = useState(dataTipoLead[0]?.nombre)
-  const [selectedPrograma, setSelectedPrograma] = useState(null)
+  const [selectedTipoLead, setSelectedTipoLead] = useState(dataTipoLead[0]?.id)
+  const [selectedPrograma, setSelectedPrograma] = useState(dataPrograma[0]?.id)
 
   useEffect(() => {
     async function loadAll() {
@@ -82,8 +82,9 @@ const Chat = () => {
 
   // Monitor chat state 
   useEffect(() => {
-    console.log({ selectedTipoLead, selectedPrograma })
-  }, [selectedTipoLead, selectedPrograma])
+    console.log({ selectedTipoLead, selectedPrograma, dataTipoLead})
+    console.log(!(selectedTipoLead == dataTipoLead[0]?.id))
+  }, [selectedTipoLead, selectedPrograma, dataTipoLead])
 
   //constantes para hacer pruebas pero el tipoleand funciona desde la constante 
   const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
@@ -151,7 +152,7 @@ const Chat = () => {
                 <input
                   type="checkbox"
                   className="sr-only peer"
-                  checked={selectedTipoLead === dataTipoLead[0]?.id}
+                  checked={selectedTipoLead == dataTipoLead[0]?.id}
                   onChange={(e) => {
                     if (e.target.checked) {
                       setSelectedTipoLead(dataTipoLead[0].id)
@@ -160,7 +161,7 @@ const Chat = () => {
                     }
                   }}
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7D3C98]"></div>
+                <div className="w-11 h-6 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all bg-[#7D3C98] rotate-180"></div>
               </label>
               <span className="text-sm font-medium">
                 {tipoLeadNames[1]}
