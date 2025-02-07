@@ -14,8 +14,8 @@ export const getMomento = (programaId) => {
   return axios.get(`${endpoint}/momento/?programa_id=${programaId}`)
 }
 
-export const getSubmomento = () => {
-  return axios.get(`${endpoint}/submomento/`)
+export const getSubmomento = (momentoId) => {
+  return axios.get(`${endpoint}/submomento/?momento_id=${momentoId}`)
 }
 export const getRespuesta = () => {
   return axios.get(`${endpoint}/respuesta/`)

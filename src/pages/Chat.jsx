@@ -31,6 +31,7 @@ const Chat = () => {
   // Chat state
   const [selectedTipoLead, setSelectedTipoLead] = useState(null)
   const [selectedPrograma, setSelectedPrograma] = useState(null)
+  const [selectedMomento, setSelectedMomento] = useState(null)
 
   useEffect(() => {
     async function loadAll() {
@@ -89,11 +90,22 @@ const Chat = () => {
     }
   }, [selectedPrograma])
 
+  // Update submoments when change moment
+  useEffect(() => {
+    if (selectedMomento === null) {
+      // Reset submoments
+      setDataSubmomento([])
+    } else {
+      getSubmomento(selectedMomento).then(submomentos => {
+        setDataSubmomento(submomentos.data)
+      })
+    }
+  }, [selectedMomento])
+
   // Monitor chat state 
   useEffect(() => {
-    console.log({ selectedTipoLead, selectedPrograma, dataTipoLead})
-    console.log(!(selectedTipoLead == dataTipoLead[0]?.id))
-  }, [selectedTipoLead, selectedPrograma, dataTipoLead])
+    console.log({ selectedTipoLead, selectedPrograma, dataTipoLead, selectedMomento })
+  }, [selectedTipoLead, selectedPrograma, dataTipoLead, selectedMomento])
 
   //constantes para hacer pruebas pero el tipoleand funciona desde la constante 
   const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
@@ -101,14 +113,6 @@ const Chat = () => {
   const subMon = dataSubmomento
   const respuesta = dataRespuesta
   // const doc = apiData.documento
-  // console.log(doc)
-
-
-
-  const handleMomentClick = (moment) => {
-    const selectedSubMomentsForMoment = dataSubmomento.filter((sub) => sub.momento === moment.id)
-    setSelectedSubMoments(selectedSubMomentsForMoment)
-  }
 
 
 
@@ -183,6 +187,7 @@ const Chat = () => {
             onChange={(e) => setSelectedPrograma(e.target.value)}
           >
             <option value="">Programas</option>
+            {/* Render programas of current tipo lead */}
             {dataPrograma.map((program) => (
               <option key={program.id} value={program.id}>
                 {program.nombre.charAt(0).toUpperCase() + program.nombre.slice(1).toLowerCase()}
@@ -192,10 +197,11 @@ const Chat = () => {
 
         </div>
         <div className="flex-1 overflow-y-auto p-4">
+          {/* render momentos of the current programa */}
           {dataMomento.map((moment) => (
             <button
               key={moment.id}
-              onClick={() => handleMomentClick(moment)}
+              onClick={() => setSelectedMomento(moment.id)}
               className="w-full p-2 mb-2 text-left border-2 border-[#7D3C98] rounded-lg hover:bg-[#7D3C98] hover:text-white transition-colors"
             >
               {moment.nombre.charAt(0).toUpperCase() + moment.nombre.slice(1).toLowerCase()}
@@ -206,6 +212,8 @@ const Chat = () => {
 
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col">
+
+        {/* chat header */}
         <div className="bg-white p-4 shadow flex justify-between items-center">
           <button
             onClick={() => setShowNewConversation(true)}
@@ -222,6 +230,7 @@ const Chat = () => {
           </button>
         </div>
 
+        {/* chat messages */}
         <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
           {messages.map((message, index) => (
             <div key={index} className="mb-4 p-4 rounded-lg bg-white shadow">
@@ -241,10 +250,11 @@ const Chat = () => {
 
         <div className="p-4 bg-white border-t border-gray-200">
           <div className="flex space-x-2">
-            {selectedSubMoments.length > 0 && (
+            {/* Render submomentos of the current momento */}
+            {dataSubmomento.length > 0 && (
               <div className="mb-4">
                 <div className="flex flex-wrap gap-2">
-                  {selectedSubMoments.map((subMoment) => (
+                  {dataSubmomento.map((subMoment) => (
                     <button
                       key={subMoment.id}
                       onClick={() => handleSubMomentClick(subMoment)}
