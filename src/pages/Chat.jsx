@@ -80,7 +80,7 @@ const Chat = () => {
 
   // Update moments when change program
   useEffect(() => {
-    if (selectedPrograma === null) {
+    if (selectedPrograma === null || selectedPrograma === "") {
       // Reset moments
       setDataMomento([])
     } else {
