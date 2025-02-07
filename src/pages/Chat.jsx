@@ -5,6 +5,7 @@ import { CircleChevronDown, CircleChevronUp, History } from "lucide-react"
 import logo from "../assets/logo.webp"
 import HistoryComponent from "../components/History"
 import { getTipoLead, getMomento, getPrograma, getRespuesta, getSubmomento, getdocumento } from "../api/chatbot.api"
+import { set } from "react-hook-form"
 
 const Chat = () => {
   const [isNewLead, setIsNewLead] = useState(false)
@@ -83,6 +84,7 @@ const Chat = () => {
     if (selectedPrograma === null || selectedPrograma === "") {
       // Reset moments
       setDataMomento([])
+      setSelectedMomento(null)
     } else {
       getMomento(selectedPrograma).then(momentos => {
         setDataMomento(momentos.data)
