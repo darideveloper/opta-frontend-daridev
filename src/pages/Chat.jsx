@@ -202,7 +202,19 @@ const Chat = () => {
             <button
               key={moment.id}
               onClick={() => setSelectedMomento(moment.id)}
-              className="w-full p-2 mb-2 text-left border-2 border-[#7D3C98] rounded-lg hover:bg-[#7D3C98] hover:text-white transition-colors"
+              className={`
+                w-full
+                p-2
+                mb-2
+                text-left
+                border-2
+                border-[#7D3C98]
+                rounded-lg
+                ${moment.id == selectedMomento && "bg-[#7D3C98] text-white"}
+                hover:bg-[#7D3C98]
+                hover:text-white
+                transition-colors
+              `}
             >
               {moment.nombre.charAt(0).toUpperCase() + moment.nombre.slice(1).toLowerCase()}
             </button>
