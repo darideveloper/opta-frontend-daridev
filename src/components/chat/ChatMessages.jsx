@@ -1,3 +1,6 @@
+// Icons
+import { CircleChevronDown } from "lucide-react"
+
 /**
  * ChatMessages component
  * 

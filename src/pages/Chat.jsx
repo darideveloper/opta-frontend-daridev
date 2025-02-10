@@ -1,10 +1,6 @@
 
 // Libs
 import { useState, useEffect } from "react"
-import { useChatStore } from "../../stores/chat-store"
-
-// Icons
-import { CircleChevronDown, CircleChevronUp } from "lucide-react"
 
 // Components
 import HistoryComponent from "../components/History"
@@ -18,47 +14,34 @@ const Chat = () => {
   const [inputMessage, setInputMessage] = useState("")
   const [showHistorial, setShowHistorial] = useState(false)
   const [showNewConversation, setShowNewConversation] = useState(false)
-  const [selectedSubMoments, setSelectedSubMoments] = useState([])
 
-  // Zustand store
-  const momento = useChatStore((state) => state.momento)
+  // const handleSubMomentClick = (subMoment) => {
+  //   const responses = dataRespuesta
+  //     .filter((r) => r.submomento === subMoment.id)
+  //     .map((r) => r.contenido) // Extrae solo el contenido de cada respuesta
 
-  // Api data
-  const [dataTipoLead, setDataTipoLead] = useState([])
-  const [dataSubmomento, setDataSubmomento] = useState([])
-  const [dataRespuesta, setDataRespuesta] = useState([])
+  //   const responseText = responses.length > 0 ? responses.join("\n\n") : "No hay una respuesta definida para este submomento."
 
-  useEffect(() => {
-    console.log("Momento:", momento)
-  }, [momento])
+  //   const now = new Date()
+  //   const formattedDate = now.toISOString()
 
-  const handleSubMomentClick = (subMoment) => {
-    const responses = dataRespuesta
-      .filter((r) => r.submomento === subMoment.id)
-      .map((r) => r.contenido) // Extrae solo el contenido de cada respuesta
-
-    const responseText = responses.length > 0 ? responses.join("\n\n") : "No hay una respuesta definida para este submomento."
-
-    const now = new Date()
-    const formattedDate = now.toISOString()
-
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { content: responseText, title: "ChatBot", timestamp: formattedDate }
-    ])
-  }
+  //   setMessages((prevMessages) => [
+  //     ...prevMessages,
+  //     { content: responseText, title: "ChatBot", timestamp: formattedDate }
+  //   ])
+  // }
 
 
-  const handleSendMessage = () => {
-    if (inputMessage.trim()) {
-      const now = new Date()
-      const formattedDate = now.toISOString()
-      const newMessage = { content: inputMessage, title: "Usuario", timestamp: formattedDate }
+  // const handleSendMessage = () => {
+  //   if (inputMessage.trim()) {
+  //     const now = new Date()
+  //     const formattedDate = now.toISOString()
+  //     const newMessage = { content: inputMessage, title: "Usuario", timestamp: formattedDate }
 
-      setMessages((prevMessages) => [...prevMessages, newMessage])
-      setInputMessage("")
-    }
-  }
+  //     setMessages((prevMessages) => [...prevMessages, newMessage])
+  //     setInputMessage("")
+  //   }
+  // }
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -70,7 +53,7 @@ const Chat = () => {
 
         <ChatHeader />
         <ChatMessages messages={messages} />
-        <ChatTextBox dataSubmomentos={dataSubmomento} />
+        <ChatTextBox />
         
       </div>
 

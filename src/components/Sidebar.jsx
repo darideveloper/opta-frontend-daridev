@@ -67,21 +67,13 @@ export default function Sidebar() {
 
   // Update submoments when change moment
   useEffect(() => {
-    // if (selectedMomento === null) {
-    //   // Reset submoments
-    //   setDataSubmomento([])
-    // } else {
-    //   getSubmomento(selectedMomento).then(submomentos => {
-    //     setDataSubmomento(submomentos.data)
-    //   })
-    // }
     setMomento(selectedMomento)
   }, [selectedMomento])
 
   // Monitor chat state 
-  useEffect(() => {
-    console.log({ selectedTipoLead, selectedPrograma, selectedMomento })
-  }, [selectedTipoLead, selectedPrograma, selectedMomento])
+  // useEffect(() => {
+  //   console.log({ selectedTipoLead, selectedPrograma, selectedMomento })
+  // }, [selectedTipoLead, selectedPrograma, selectedMomento])
 
   return (
     <div className="w-64 bg-whiteflex flex-col">

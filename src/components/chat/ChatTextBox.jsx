@@ -1,20 +1,33 @@
-import { useState } from 'react'
+// Libs
+import { useState, useEffect } from 'react'
+import { useChatStore } from "../../../stores/chat-store"
+import { getSubmomento } from "../../api/chatbot.api"
 
-/**
- * ChatTextBox component
- * 
- * @param {Object} props - Component props
- * @param {Array} props.dataSubmomentos - Array of submomentos
- * @param {String} props.dataSubmomentos[].id - Submomento ID
- * @param {String} props.dataSubmomentos[].nombre - Submomento name
- * @returns {JSX.Element}
- */
-export default function ChatTextBox({ dataSubmomentos }) {
 
+export default function ChatTextBox() {
+
+  // handlers
   function handleSendMessage () {
     // TODO: Send message logic
     alert('Mensaje enviado')
   }
+
+  // States
+  const [dataSubmomentos, setDataSubmomentos] = useState([])
+
+  // Zustand store
+  const momento = useChatStore((state) => state.momento)
+
+  useEffect(() => {
+    if (momento === null) {
+      // Reset submoments
+      setDataSubmomentos([])
+    } else {
+      getSubmomento(momento).then(submomentos => {
+        setDataSubmomentos(submomentos.data)
+      })
+    }
+  }, [momento]) 
 
   const [inputMessage, setInputMessage] = useState('')
 
