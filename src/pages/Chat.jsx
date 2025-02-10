@@ -1,31 +1,23 @@
 
 // Libs
 import { useState, useEffect } from "react"
-import { getRespuesta, getSubmomento, getdocumento } from "../api/chatbot.api"
 import { useChatStore } from "../../stores/chat-store"
 
 // Icons
-import { CircleChevronDown, CircleChevronUp, History } from "lucide-react"
+import { CircleChevronDown, CircleChevronUp } from "lucide-react"
 
 // Components
 import HistoryComponent from "../components/History"
 import Sidebar from "../components/Sidebar"
+import ChatHeader from "../components/chat/ChatHeader"
 
 
 const Chat = () => {
-  const [isNewLead, setIsNewLead] = useState(false)
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState("")
   const [showHistorial, setShowHistorial] = useState(false)
   const [showNewConversation, setShowNewConversation] = useState(false)
   const [selectedSubMoments, setSelectedSubMoments] = useState([])
-  // const [apiData, setApiData] = useState({
-  //   tipoLead: [],
-  //   momento: [],
-  //   programa: [],
-  //   respuesta: [],
-  //   submomento: [],
-  // })
 
   // Zustand store
   const momento = useChatStore((state) => state.momento)
@@ -35,17 +27,9 @@ const Chat = () => {
   const [dataSubmomento, setDataSubmomento] = useState([])
   const [dataRespuesta, setDataRespuesta] = useState([])
 
-  //constantes para hacer pruebas pero el tipoleand funciona desde la constante 
-  const tipoLeadName = dataTipoLead.length > 0 ? dataTipoLead[0].nombre : "Seguimiento"
-  const subMon = dataSubmomento
-  const respuesta = dataRespuesta
-  // const doc = apiData.documento
-
   useEffect(() => {
     console.log("Momento:", momento)
   }, [momento])
-
-
 
   const handleSubMomentClick = (subMoment) => {
     const responses = dataRespuesta
@@ -84,21 +68,8 @@ const Chat = () => {
       <div className="flex-1 flex flex-col">
 
         {/* chat header */}
-        <div className="bg-white p-4 shadow flex justify-between items-center">
-          <button
-            onClick={() => setShowNewConversation(true)}
-            className="bg-[#7D3C98] text-white px-4 py-2 rounded-md hover:bg-blue-900"
-          >
-            Nueva Conversación
-          </button>
-          <button
-            onClick={() => setShowHistorial(true)}
-            className="bg-[#7D3C98] flex items-center space-x-2 text-white px-4 py-2 rounded-md hover:bg-blue-900"
-          >
-            <History className="w-5 h-5" />
-            <span>Historial</span>
-          </button>
-        </div>
+        <ChatHeader />
+        
 
         {/* chat messages */}
         <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
@@ -118,6 +89,7 @@ const Chat = () => {
           ))}
         </div>
 
+        {/* Chatbox */}
         <div className="p-4 bg-white border-t border-gray-200">
           <div className="flex space-x-2">
             {/* Render submomentos of the current momento */}
