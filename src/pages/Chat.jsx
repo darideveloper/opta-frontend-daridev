@@ -2,6 +2,7 @@
 // Libs
 import { useState, useEffect } from "react"
 import { getRespuesta, getSubmomento, getdocumento } from "../api/chatbot.api"
+import { useChatStore } from "../../stores/chat-store"
 
 // Icons
 import { CircleChevronDown, CircleChevronUp, History } from "lucide-react"
@@ -26,6 +27,9 @@ const Chat = () => {
   //   submomento: [],
   // })
 
+  // Zustand store
+  const momento = useChatStore((state) => state.momento)
+
   // Api data
   const [dataTipoLead, setDataTipoLead] = useState([])
   const [dataSubmomento, setDataSubmomento] = useState([])
@@ -36,6 +40,10 @@ const Chat = () => {
   const subMon = dataSubmomento
   const respuesta = dataRespuesta
   // const doc = apiData.documento
+
+  useEffect(() => {
+    console.log("Momento:", momento)
+  }, [momento])
 
 
 

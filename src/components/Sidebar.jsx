@@ -1,6 +1,7 @@
 // Libs
 import { useState, useEffect } from "react"
 import { getTipoLead, getMomento, getPrograma } from "../api/chatbot.api"
+import { useChatStore } from "../../stores/chat-store"
 
 // Media
 import logo from "../assets/logo.webp"
@@ -19,6 +20,9 @@ export default function Sidebar() {
 
   // Render texts
   const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
+
+  // Zustand store
+  const setMomento = useChatStore(state => state.setMomento)
 
   // Load tipo leads when mounted
   useEffect(() => {
@@ -71,6 +75,7 @@ export default function Sidebar() {
     //     setDataSubmomento(submomentos.data)
     //   })
     // }
+    setMomento(selectedMomento)
   }, [selectedMomento])
 
   // Monitor chat state 
