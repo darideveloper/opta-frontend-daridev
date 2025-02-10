@@ -11,7 +11,7 @@ import HistoryComponent from "../components/History"
 import Sidebar from "../components/Sidebar"
 import ChatHeader from "../components/chat/ChatHeader"
 import ChatMessages from "../components/chat/ChatMessages"
-
+import ChatTextBox from "../components/chat/ChatTextBox"
 
 const Chat = () => {
   const [messages, setMessages] = useState([])
@@ -70,44 +70,8 @@ const Chat = () => {
 
         <ChatHeader />
         <ChatMessages messages={messages} />
+        <ChatTextBox dataSubmomentos={dataSubmomento} />
         
-
-        {/* Chatbox */}
-        <div className="p-4 bg-white border-t border-gray-200">
-          <div className="flex space-x-2">
-            {/* Render submomentos of the current momento */}
-            {dataSubmomento.length > 0 && (
-              <div className="mb-4">
-                <div className="flex flex-wrap gap-2">
-                  {dataSubmomento.map((subMoment) => (
-                    <button
-                      key={subMoment.id}
-                      onClick={() => handleSubMomentClick(subMoment)}
-                      className="px-3 py-1 rounded-full border-2 border-[#7D3C98] text-sm hover:bg-[#7D3C98] hover:text-white transition-colors"
-                    >
-                      {subMoment.nombre}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="flex mt-4">
-            <input
-              type="text"
-              className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[#7D3C98]"
-              placeholder="Escribe un mensaje..."
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-            />
-            <button
-              className="px-4 py-2 bg-[#7D3C98] text-white rounded-r-md hover:bg-[#7D3C98]"
-              onClick={handleSendMessage}
-            >
-              ENVIAR
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Historial Sidebar */}

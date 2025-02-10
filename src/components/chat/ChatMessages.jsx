@@ -5,6 +5,7 @@
  * @param {Array} props.messages - Array of messages
  * @param {String} props.messages[].title - Message title
  * @param {String} props.messages[].content - Message content
+ * @returns {JSX.Element}
  */
 export default function ChatMessages({ messages }) {
   return (
