@@ -86,7 +86,7 @@ export default function Sidebar() {
           </div>
 
           {/* toggle tipo lead */}
-          <div className="toggle flex gap-4">
+          <div className="toggle flex gap-4 justify-center items-center">
             <span className="text-sm font-medium">
               {tipoLeadNames[0]}
             </span>
