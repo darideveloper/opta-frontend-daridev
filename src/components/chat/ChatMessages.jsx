@@ -1,6 +1,11 @@
 // Icons
 import { CircleChevronDown } from "lucide-react"
 
+// Libs
+import { useChatStore } from "../../../stores/chat-store"
+import { useEffect } from "react"
+
+
 /**
  * ChatMessages component
  * 
@@ -11,6 +16,14 @@ import { CircleChevronDown } from "lucide-react"
  * @returns {JSX.Element}
  */
 export default function ChatMessages({ messages }) {
+
+  // Zustand store
+  const subMomento = useChatStore((state) => state.subMomento)
+
+  useEffect(() => {
+    console.log({ subMomento })
+  }, [subMomento])
+
   return (
     <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
     {messages.map((message, index) => (

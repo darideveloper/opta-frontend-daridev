@@ -5,19 +5,24 @@ import { getSubmomento } from "../../api/chatbot.api"
 
 
 export default function ChatTextBox() {
-
+  
   // handlers
   function handleSendMessage () {
     // TODO: Send message logic
     alert('Mensaje enviado')
   }
-
+  
+  function handleSubMomentClick (subMomentId) {
+    setSubMomento(subMomentId)
+  }
+  
   // States
   const [dataSubmomentos, setDataSubmomentos] = useState([])
-
+  
   // Zustand store
   const momento = useChatStore((state) => state.momento)
-
+  const setSubMomento = useChatStore(state => state.setSubMomento)
+  
   useEffect(() => {
     if (momento === null) {
       // Reset submoments
@@ -41,7 +46,7 @@ export default function ChatTextBox() {
               {dataSubmomentos.map((subMoment) => (
                 <button
                   key={subMoment.id}
-                  onClick={() => handleSubMomentClick(subMoment)}
+                  onClick={() => handleSubMomentClick(subMoment.id)}
                   className="px-3 py-1 rounded-full border-2 border-[#7D3C98] text-sm hover:bg-[#7D3C98] hover:text-white transition-colors"
                 >
                   {subMoment.nombre}
