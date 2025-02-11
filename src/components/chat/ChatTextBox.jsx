@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useChatStore } from "../../../stores/chat-store"
 import { getSubmomento } from "../../api/chatbot.api"
+import { getRespuesta } from "../../api/chatbot.api"
 
 
 export default function ChatTextBox() {
@@ -13,6 +14,10 @@ export default function ChatTextBox() {
   }
   
   function handleSubMomentClick (subMomentId) {
+
+    // Get response from api
+    // const response = getRespuesta()
+
     setSubMomento(subMomentId)
   }
   
@@ -61,7 +66,7 @@ export default function ChatTextBox() {
         <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[#7D3C98]"
-          placeholder="Escribe un mensaje..."
+          placeholder="Escribe palabras clave para buscar archivos"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
         />
