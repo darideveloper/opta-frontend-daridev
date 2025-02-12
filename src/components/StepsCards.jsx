@@ -25,6 +25,7 @@ export default function StepsCards({ steps }) {
 
           const isLastStep = index === visibleStepsList.length - 1
           const moreSteps = steps.length - visibleSteps
+          const btnEnable = moreSteps > 0 && isLastStep
 
           return (
             <div key={index} className="mb-4 p-4 rounded-lg bg-white shadow">
@@ -35,10 +36,10 @@ export default function StepsCards({ steps }) {
                   className={`
                     text-[#7D3C98] 
                     hover:text-purple-800
-                    ${!isLastStep && 'opacity-50'}
+                    ${!btnEnable && 'opacity-50'}
                   `}
                   onClick={() => setVisibleSteps(visibleSteps + 1)}
-                  disabled={!isLastStep}
+                  disabled={!btnEnable}
                 >
                   <CircleChevronDown className="w-5 h-5" />
                 </button>
