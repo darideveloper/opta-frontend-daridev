@@ -5,7 +5,8 @@ export default function ChatHeader() {
   return (
     <div className={`
       bg-white
-        p-4
+        px-4
+        py-8
         shadow
         flex
         flex-col sm:flex-row
@@ -13,6 +14,7 @@ export default function ChatHeader() {
         items-center
         gap-4
       `}>
+
       <button
         // onClick={() => setShowNewConversation(true)}
         onClick={() => alert("Nueva Conversación")}
