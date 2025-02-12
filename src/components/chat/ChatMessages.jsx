@@ -33,8 +33,17 @@ export default function ChatMessages() {
       {messages.map(({user, response}, index) => (
         <div
           key={index}
+          className={`
+            mb-8
+          `}
         >
-          <p>{user}</p>
+          <p
+            className={`
+              mb-2
+            `}
+          >
+            {user}
+          </p>
 
           <StepsCards 
             steps={response}
