@@ -33,12 +33,21 @@ export default function ChatTextBox() {
     } else {
       // Add messages
       getRespuesta(subMomentId).then(respuestas => {
+
+        let respuestasData = respuestas.data.map(respuesta => ({
+          title: respuesta.titulo,
+          content: respuesta.contenido
+        }))
+        if (respuestasData.length == 0) {
+          respuestasData = [{
+            title: "No se encontraron resultados",
+            content: "Inetnte otra opción" 
+          }]
+        }
+
         addMessage({
           user: subMomentoText,
-          response: respuestas.data.map(respuesta => ({
-            title: respuesta.titulo,
-            content: respuesta.contenido
-          }))
+          response: respuestasData
         })
       })
     }
