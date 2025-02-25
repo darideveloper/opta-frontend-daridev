@@ -1,5 +1,5 @@
 // Icons
-import { CircleChevronDown } from "lucide-react"
+import { CircleChevronDown, Files } from "lucide-react"
 
 // Libs
 import { useState } from "react"
@@ -21,30 +21,99 @@ export default function StepsCards({ steps }) {
   return (
     <>
       {
-        visibleStepsList.map(({ title, content }, index) => {
+        visibleStepsList.map(({ title, content, documentoUrl }, index) => {
 
           const isLastStep = index === visibleStepsList.length - 1
           const moreSteps = steps.length - visibleSteps
           const btnEnable = moreSteps > 0 && isLastStep
+          const fileExt = documentoUrl ? documentoUrl.split('.').pop() : null
+          const fileName = documentoUrl ? documentoUrl.split('/').pop() : ""
+          let fileNameClean = fileName
+          fileNameClean = fileNameClean.replace(`.${fileExt}`, "")
+          fileNameClean = fileNameClean.replaceAll("_", " ")
+          fileNameClean = fileNameClean.replaceAll("-", " ")
 
           return (
-            <div key={index} className="mb-4 p-4 rounded-lg bg-white shadow">
-              <div className="font-medium text-[#7D3C98] mb-2">{title}</div>
-              <p>{content}</p>
-              <div className="flex space-x-2 mt-2">
-                <button
-                  className={`
-                    text-[#7D3C98] 
-                    hover:text-purple-800
-                    ${!btnEnable && 'opacity-50'}
-                  `}
-                  onClick={() => setVisibleSteps(visibleSteps + 1)}
-                  disabled={!btnEnable}
-                >
-                  <CircleChevronDown className="w-5 h-5" />
-                </button>
+            <>
+              <div key={index} className="mb-4 p-4 rounded-lg bg-white shadow">
+
+                {/* Title */}
+                <div className="font-medium text-[#7D3C98] mb-2">{title}</div>
+
+                {/* Main text */}
+                <p>{content}</p>
+
+                {/* Next button */}
+                <div className="flex space-x-2 mt-2">
+                  <button
+                    className={`
+                      text-[#7D3C98] 
+                      hover:text-purple-800
+                      ${!btnEnable && 'opacity-50'}
+                    `}
+                    onClick={() => setVisibleSteps(visibleSteps + 1)}
+                    disabled={!btnEnable}
+                  >
+                    <CircleChevronDown className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-            </div>
+
+              {/* Icon */}
+              {
+                fileExt && (
+                  <div>
+                    <a
+                      href={documentoUrl}
+                      target="_blank"
+                      className={`
+                        flex
+                        items-center
+                        justify-center
+                        flex-col
+                        w-28
+                        duration-300
+                        hover:opacity-70
+                        hover:-translate-y-1
+                      `}
+                    >
+                      {/* File ext */}
+                      <span
+                        className={`
+                          font-bold
+                          text-[#7D3C98]
+                        `}
+                      >
+                        .{fileExt.toUpperCase()}
+                      </span>
+
+                      {/* File icon */}
+                      <Files
+                        className={`
+                          icon
+                          w-14 h-14
+                          inline-block
+                          stroke-[#7D3C98]
+                        `}
+                      />
+
+                      {/* File name */}
+                      <span
+                        className={`
+                          inline-block
+                          text-wrap
+                          w-full
+                          text-center
+                          
+                        `}
+                      >
+                        {fileNameClean}
+                      </span>
+                    </a>
+                  </div>
+                )
+              }
+            </>
           )
         })
       }

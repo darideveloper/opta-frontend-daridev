@@ -36,12 +36,15 @@ export default function ChatTextBox() {
 
         let respuestasData = respuestas.data.map(respuesta => ({
           title: respuesta.titulo,
-          content: respuesta.contenido
+          content: respuesta.contenido,
+          documentoUrl: respuesta.documento_url,
         }))
+
         if (respuestasData.length == 0) {
           respuestasData = [{
             title: "No se encontraron resultados",
-            content: "Inetnte otra opción" 
+            content: "Inetnte otra opción",
+            documento_url: null,
           }]
         }
 
@@ -64,9 +67,9 @@ export default function ChatTextBox() {
     }
   }, [momento])
 
-  useEffect(() => {
-    console.log({messages})
-  }, [messages])
+  // useEffect(() => {
+  //   console.log({messages})
+  // }, [messages])
 
   const [inputMessage, setInputMessage] = useState('')
 

@@ -16,17 +16,6 @@ export default function ChatMessages() {
   const messages = useChatStore((state) => state.messages)
 
 
-  // useEffect(() => {
-  //   if (subMomento === null) {
-  //     // Reset submoments
-  //     setDataSubmomentos([])
-  //   } else {
-  //     getSubmomento(momento).then(submomentos => {
-  //       setDataSubmomentos(submomentos.data)
-  //     })
-  //   }
-  // }, [momento])
-
   return (
     <div className="flex-1 overflow-y-auto p-4 bg-gray-50">
 
@@ -48,6 +37,7 @@ export default function ChatMessages() {
           <StepsCards 
             steps={response}
           />
+          
         </div>
       ))}
 
