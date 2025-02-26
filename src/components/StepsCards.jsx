@@ -21,21 +21,16 @@ export default function StepsCards({ steps }) {
   return (
     <>
       {
-        visibleStepsList.map(({ title, content, documentoUrl }, index) => {
+        visibleStepsList.map(({ title, content, documentoUrl, documentoNombre }, index) => {
 
           const isLastStep = index === visibleStepsList.length - 1
           const moreSteps = steps.length - visibleSteps
           const btnEnable = moreSteps > 0 && isLastStep
           const fileExt = documentoUrl ? documentoUrl.split('.').pop() : null
-          const fileName = documentoUrl ? documentoUrl.split('/').pop() : ""
-          let fileNameClean = fileName
-          fileNameClean = fileNameClean.replace(`.${fileExt}`, "")
-          fileNameClean = fileNameClean.replaceAll("_", " ")
-          fileNameClean = fileNameClean.replaceAll("-", " ")
 
           return (
-            <>
-              <div key={index} className="mb-4 p-4 rounded-lg bg-white shadow">
+            <div key={index}>
+              <div className="mb-4 p-4 rounded-lg bg-white shadow">
 
                 {/* Title */}
                 <div className="font-medium text-[#7D3C98] mb-2">{title}</div>
@@ -107,13 +102,13 @@ export default function StepsCards({ steps }) {
                           
                         `}
                       >
-                        {fileNameClean}
+                        {documentoNombre}
                       </span>
                     </a>
                   </div>
                 )
               }
-            </>
+            </div>
           )
         })
       }

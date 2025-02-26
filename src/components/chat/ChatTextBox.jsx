@@ -37,7 +37,8 @@ export default function ChatTextBox() {
         let respuestasData = respuestas.data.map(respuesta => ({
           title: respuesta.titulo,
           content: respuesta.contenido,
-          documentoUrl: respuesta.documento_url,
+          documentoUrl: respuesta.documento?.archivo,
+          documentoNombre: respuesta.documento?.nombre
         }))
 
         if (respuestasData.length == 0) {
