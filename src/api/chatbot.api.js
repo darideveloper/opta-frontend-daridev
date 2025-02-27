@@ -20,6 +20,6 @@ export const getSubmomento = (momentoId) => {
 export const getRespuesta = (subMomento) => {
   return axios.get(`${endpoint}/respuesta/?submomento_id=${subMomento}`)
 }
-export const getdocumento = () => {
-  return axios.get(`${endpoint}/documento/`)
+export const getdocumentos = (tags) => {
+  return axios.get(`${endpoint}/documento/?tags=${tags}`)
 }

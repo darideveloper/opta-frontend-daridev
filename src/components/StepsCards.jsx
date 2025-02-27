@@ -21,12 +21,11 @@ export default function StepsCards({ steps }) {
   return (
     <>
       {
-        visibleStepsList.map(({ title, content, documentoUrl, documentoNombre }, index) => {
+        visibleStepsList.map(({ title, content, documentos }, index) => {
 
           const isLastStep = index === visibleStepsList.length - 1
           const moreSteps = steps.length - visibleSteps
           const btnEnable = moreSteps > 0 && isLastStep
-          const fileExt = documentoUrl ? documentoUrl.split('.').pop() : null
 
           return (
             <div key={index}>
@@ -56,8 +55,16 @@ export default function StepsCards({ steps }) {
 
               {/* Icon */}
               {
-                fileExt && (
-                  <div>
+                documentos.map(documento => {
+
+                  {/* Get document data */}
+                  const documentoUrl = documento.archivo
+                  const documentoNombre = documento.nombre
+                  const fileExt = documentoUrl ? documentoUrl.split('.').pop() : null
+
+                  {/* render document */}
+                  return (
+                    <div>
                     <a
                       href={documentoUrl}
                       target="_blank"
@@ -66,7 +73,7 @@ export default function StepsCards({ steps }) {
                         items-center
                         justify-center
                         flex-col
-                        w-28
+                        w-36
                         duration-300
                         hover:opacity-70
                         hover:-translate-y-1
@@ -79,7 +86,7 @@ export default function StepsCards({ steps }) {
                           text-[#7D3C98]
                         `}
                       >
-                        .{fileExt.toUpperCase()}
+                        .{fileExt && fileExt.toUpperCase()}
                       </span>
 
                       {/* File icon */}
@@ -106,7 +113,9 @@ export default function StepsCards({ steps }) {
                       </span>
                     </a>
                   </div>
-                )
+                  )
+
+                })
               }
             </div>
           )

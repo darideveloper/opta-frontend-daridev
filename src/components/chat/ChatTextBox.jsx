@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useChatStore } from "../../../stores/chat-store"
 import { getSubmomento } from "../../api/chatbot.api"
 import { getRespuesta } from "../../api/chatbot.api"
-
+import { getdocumentos } from "../../api/chatbot.api"
 
 export default function ChatTextBox() {
 
@@ -17,11 +17,15 @@ export default function ChatTextBox() {
   // States
   const [dataSubmomentos, setDataSubmomentos] = useState([])
   const [selectedSubMomento, setSelectedSubMomento] = useState(null)
+  const [inputMessage, setInputMessage] = useState('')
 
   // handlers
   function handleSendMessage() {
-    // TODO: Send message logic
-    alert('Mensaje enviado')
+    const tags = inputMessage.split(" ")
+    const tagsString = tags.join(",")
+    getdocumentos(tagsString).then(documentos => {
+      console.log({documentos})
+    })
   }
 
   function handleSubMomentClick(subMomentId, subMomentoText) {
@@ -37,15 +41,14 @@ export default function ChatTextBox() {
         let respuestasData = respuestas.data.map(respuesta => ({
           title: respuesta.titulo,
           content: respuesta.contenido,
-          documentoUrl: respuesta.documento?.archivo,
-          documentoNombre: respuesta.documento?.nombre
+          documentos: respuesta.documento ? [respuesta.documento,respuesta.documento,respuesta.documento,respuesta.documento] : [],
         }))
 
         if (respuestasData.length == 0) {
           respuestasData = [{
             title: "No se encontraron resultados",
             content: "Inetnte otra opción",
-            documento_url: null,
+            documentos: [],
           }]
         }
 
@@ -67,12 +70,6 @@ export default function ChatTextBox() {
       })      
     }
   }, [momento])
-
-  // useEffect(() => {
-  //   console.log({messages})
-  // }, [messages])
-
-  const [inputMessage, setInputMessage] = useState('')
 
   return (
     <div className="p-4 bg-white border-t border-gray-200">
