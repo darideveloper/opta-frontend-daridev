@@ -19,7 +19,12 @@ export default function ChatTextBox() {
   const [inputMessage, setInputMessage] = useState('')
 
   // handlers
-  function handleSendMessage() {
+  function handleSendMessage(e) {
+
+    // Prevent default
+    e.preventDefault()
+
+    // Get tags from user message
     const tags = inputMessage.split(" ")
     const tagsString = tags.join(",")
     getdocumentos(tagsString).then(documentos => {
@@ -47,6 +52,8 @@ export default function ChatTextBox() {
         response: response
       })
     })
+
+    setInputMessage('')
   }
 
   function handleSubMomentClick(subMomentId, subMomentoText) {
@@ -113,7 +120,10 @@ export default function ChatTextBox() {
         )}
       </div>
 
-      <div className="flex mt-4">
+      <form 
+        className="flex mt-4"
+        onSubmit={handleSendMessage}
+      >
         <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[#7D3C98]"
@@ -123,11 +133,10 @@ export default function ChatTextBox() {
         />
         <button
           className="px-4 py-2 bg-[#7D3C98] text-white rounded-r-md hover:bg-[#7D3C98] uppercase"
-          onClick={handleSendMessage}
         >
           Consultar
         </button>
-      </div>
+      </form>
     </div>
   )
 }
