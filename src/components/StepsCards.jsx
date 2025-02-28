@@ -56,16 +56,24 @@ export default function StepsCards({ steps }) {
                 </div>
               </div>
 
-              {/* Icon */}
-              {
-                documentos.map(documento =>
-                  <Document 
-                    key={documento.id}
-                    documentoUrl={documento.archivo}
-                    documentoNombre={documento.nombre}
-                  />
-                )
-              }
+              {/* Documents */}
+              <div
+                className={`
+                  flex
+                  flex-wrap
+                  gap-2
+                `}
+              >
+                {
+                  documentos.map(documento =>
+                    <Document 
+                      key={documento.id}
+                      documentoUrl={documento.archivo}
+                      documentoNombre={documento.nombre}
+                    />
+                  )
+                }
+              </div>
             </div>
           )
         })
