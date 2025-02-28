@@ -16,7 +16,6 @@ export default function ChatTextBox() {
 
   // States
   const [dataSubmomentos, setDataSubmomentos] = useState([])
-  const [selectedSubMomento, setSelectedSubMomento] = useState(null)
   const [inputMessage, setInputMessage] = useState('')
 
   // handlers
@@ -24,7 +23,29 @@ export default function ChatTextBox() {
     const tags = inputMessage.split(" ")
     const tagsString = tags.join(",")
     getdocumentos(tagsString).then(documentos => {
-      console.log({documentos})
+
+      // Change response if there are no documents
+      let response
+      if (documentos.data.length == 0) {
+        response = [{
+          title: "No se encontraron resultados",
+          content: "Intenta con otras palabras clave",
+          documentos: []
+        }]
+      } else {
+        response = [{
+          title: "Documentos encontrados",
+          content: "Estos son los documentos encontrados con tu búsqueda",
+          documentos: documentos.data
+        }]
+      }
+      
+      
+      // Save a new message with all documents found
+      addMessage({
+        user: inputMessage,
+        response: response
+      })
     })
   }
 
