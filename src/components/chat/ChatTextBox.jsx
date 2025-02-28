@@ -12,8 +12,6 @@ export default function ChatTextBox() {
   const addMessage = useChatStore(state => state.addMessage)
   const resetMessages = useChatStore(state => state.resetMessages)
 
-  const messages = useChatStore((state) => state.messages)
-
   // States
   const [dataSubmomentos, setDataSubmomentos] = useState([])
   const [inputMessage, setInputMessage] = useState('')

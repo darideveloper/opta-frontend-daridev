@@ -23,6 +23,7 @@ export default function Sidebar() {
 
   // Zustand store
   const setMomento = useChatStore(state => state.setMomento)
+  const resetMessages = useChatStore(state => state.resetMessages)
 
   // Load tipo leads when mounted
   useEffect(() => {
@@ -68,6 +69,7 @@ export default function Sidebar() {
   // Update submoments when change moment
   useEffect(() => {
     setMomento(selectedMomento)
+    resetMessages()
   }, [selectedMomento])
 
   // Monitor chat state 
