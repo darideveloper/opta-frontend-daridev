@@ -1,8 +1,11 @@
 // Icons
-import { CircleChevronDown, Files } from "lucide-react"
+import { CircleChevronDown } from "lucide-react"
 
 // Libs
 import { useState } from "react"
+
+// COmponents
+import Document from "./Document"
 
 /**
  * StepsCard component (render a list of steps with "more" button)
@@ -55,67 +58,13 @@ export default function StepsCards({ steps }) {
 
               {/* Icon */}
               {
-                documentos.map(documento => {
-
-                  {/* Get document data */}
-                  const documentoUrl = documento.archivo
-                  const documentoNombre = documento.nombre
-                  const fileExt = documentoUrl ? documentoUrl.split('.').pop() : null
-
-                  {/* render document */}
-                  return (
-                    <div>
-                    <a
-                      href={documentoUrl}
-                      target="_blank"
-                      className={`
-                        flex
-                        items-center
-                        justify-center
-                        flex-col
-                        w-36
-                        duration-300
-                        hover:opacity-70
-                        hover:-translate-y-1
-                      `}
-                    >
-                      {/* File ext */}
-                      <span
-                        className={`
-                          font-bold
-                          text-[#7D3C98]
-                        `}
-                      >
-                        .{fileExt && fileExt.toUpperCase()}
-                      </span>
-
-                      {/* File icon */}
-                      <Files
-                        className={`
-                          icon
-                          w-14 h-14
-                          inline-block
-                          stroke-[#7D3C98]
-                        `}
-                      />
-
-                      {/* File name */}
-                      <span
-                        className={`
-                          inline-block
-                          text-wrap
-                          w-full
-                          text-center
-                          
-                        `}
-                      >
-                        {documentoNombre}
-                      </span>
-                    </a>
-                  </div>
-                  )
-
-                })
+                documentos.map(documento =>
+                  <Document 
+                    key={documento.id}
+                    documentoUrl={documento.archivo}
+                    documentoNombre={documento.nombre}
+                  />
+                )
               }
             </div>
           )
