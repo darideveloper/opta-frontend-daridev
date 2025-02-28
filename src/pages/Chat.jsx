@@ -1,6 +1,6 @@
 
 // Libs
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 // Components
 import HistoryComponent from "../components/History"
@@ -9,39 +9,12 @@ import ChatHeader from "../components/chat/ChatHeader"
 import ChatMessages from "../components/chat/ChatMessages"
 import ChatTextBox from "../components/chat/ChatTextBox"
 
+
 const Chat = () => {
+  
+  // States
   const [messages, setMessages] = useState([])
-  const [inputMessage, setInputMessage] = useState("")
-  const [showHistorial, setShowHistorial] = useState(false)
   const [showNewConversation, setShowNewConversation] = useState(false)
-
-  // const handleSubMomentClick = (subMoment) => {
-  //   const responses = dataRespuesta
-  //     .filter((r) => r.submomento === subMoment.id)
-  //     .map((r) => r.contenido) // Extrae solo el contenido de cada respuesta
-
-  //   const responseText = responses.length > 0 ? responses.join("\n\n") : "No hay una respuesta definida para este submomento."
-
-  //   const now = new Date()
-  //   const formattedDate = now.toISOString()
-
-  //   setMessages((prevMessages) => [
-  //     ...prevMessages,
-  //     { content: responseText, title: "ChatBot", timestamp: formattedDate }
-  //   ])
-  // }
-
-
-  // const handleSendMessage = () => {
-  //   if (inputMessage.trim()) {
-  //     const now = new Date()
-  //     const formattedDate = now.toISOString()
-  //     const newMessage = { content: inputMessage, title: "Usuario", timestamp: formattedDate }
-
-  //     setMessages((prevMessages) => [...prevMessages, newMessage])
-  //     setInputMessage("")
-  //   }
-  // }
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -58,7 +31,10 @@ const Chat = () => {
       </div>
 
       {/* Historial Sidebar */}
-      {showHistorial && <HistoryComponent messages={messages} onClose={() => setShowHistorial(false)} />}
+      <HistoryComponent 
+        messages={[]} 
+        onClose={() => {}}
+      />
 
       {/* Nueva Conversación Modal */}
       {showNewConversation && (

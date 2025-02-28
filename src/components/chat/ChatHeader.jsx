@@ -1,7 +1,15 @@
+// Icons
 import { History } from "lucide-react"
+
+// Libs
+import { useChatStore } from "../../../stores/chat-store"
 
 
 export default function ChatHeader() {
+  
+  // Zustand store
+  const toggleHistory = useChatStore(state => state.toggleHistory)
+  
   return (
     <div className={`
       bg-white
@@ -23,8 +31,7 @@ export default function ChatHeader() {
         Nueva Conversación
       </button>
       <button
-        // onClick={() => setShowHistorial(true)}
-        onClick={() => alert("Historial")}
+        onClick={() => toggleHistory()}
         className="bg-[#7D3C98] flex items-center space-x-2 text-white px-4 py-2 rounded-md hover:bg-blue-900"
       >
         <History className="w-5 h-5" />
