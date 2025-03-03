@@ -43,7 +43,6 @@ export default function ChatTextBox() {
         }]
       }
       
-      
       // Save a new message with all documents found
       addMessage({
         user: inputMessage,

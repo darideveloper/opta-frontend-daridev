@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { getFormattedDateTime } from '../libs/datetime'
 
 export const useChatStore = create((set) => ({
   momento: null,
@@ -29,6 +30,7 @@ export const useChatStore = create((set) => ({
       }
 
       // Save message
+      message['datetime'] = getFormattedDateTime()
       stateData['messages'] = [...state.messages, message]
 
       // Save last momento
