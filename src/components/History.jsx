@@ -1,12 +1,20 @@
 
 // Libs
 import { useChatStore } from "../../stores/chat-store"
+import { useEffect } from "react"
 
 const HistoryComponent = ({ messages }) => {
 
   // Zustand store
   const toggleHistory = useChatStore(state => state.toggleHistory)
   const showHistorial = useChatStore(state => state.showHistory)
+  const history = useChatStore(state => state.history)
+  const lastMomento = useChatStore(state => state.lastMomento)
+  const momento = useChatStore(state => state.momento)
+
+  useEffect(() => {
+    console.log({ history, lastMomento, momento })
+  }, [history, lastMomento, momento])
 
   return (
     <div
