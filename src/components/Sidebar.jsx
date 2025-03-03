@@ -16,7 +16,7 @@ export default function Sidebar() {
   // Sidebar state
   const [selectedTipoLead, setSelectedTipoLead] = useState(null)
   const [selectedPrograma, setSelectedPrograma] = useState(null)
-  const [selectedMomento, setSelectedMomento] = useState(null)
+  const [selectedMomento, setSelectedMomento] = useState({id: null})
 
   // Render texts
   const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
@@ -58,7 +58,7 @@ export default function Sidebar() {
     if (selectedPrograma === null || selectedPrograma === "") {
       // Reset moments
       setDataMomento([])
-      setSelectedMomento(null)
+      setSelectedMomento({id: null})
     } else {
       getMomento(selectedPrograma).then(momentos => {
         setDataMomento(momentos.data)
@@ -132,7 +132,7 @@ export default function Sidebar() {
         {dataMomento.map((moment) => (
           <button
             key={moment.id}
-            onClick={() => setSelectedMomento(moment.id)}
+            onClick={() => setSelectedMomento({id: moment.id, name: moment.nombre})}
             className={`
               w-full
               p-2
@@ -141,7 +141,7 @@ export default function Sidebar() {
               border-2
               border-[#7D3C98]
               rounded-lg
-              ${moment.id == selectedMomento && "bg-[#7D3C98] text-white"}
+              ${moment.id == selectedMomento.id && "bg-[#7D3C98] text-white"}
               hover:bg-[#7D3C98]
               hover:text-white
               transition-colors

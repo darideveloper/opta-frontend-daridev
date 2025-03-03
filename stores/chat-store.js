@@ -2,22 +2,27 @@ import { create } from 'zustand'
 import { getFormattedDateTime } from '../libs/datetime'
 
 /**
- * @typedef {Object} Response
- * @property {string} title - The title of the response.
- * @property {string} content - The content of the response.
- * @property {Document[]} documentos - The list of documents associated with the response.
- * @property {number} documentos[].id - The identifier of the document.
- * @property {string} documentos[].nombre - The name of the document.
- * @property {string} documentos[].archivo - The URL of the document.
- * @property {string} documentos[].palabras_clave - The keywords of the document.
+ * @typedef {Object} momento
+ * @property {number} id - The identifier of the moment.
+ * @property {string} name - The name of the moment.
  */
 
+/**
+ * @typedef {number} lastMomento
+ */
 
 /**
  * @typedef {Object} Message
  * @property {string} user - Message sent by the user
  * @property {string} datetime - Datetime when the message was sent with the format "dd/mm hh:mm:ss"
  * @property {Response[]} response - The list of responses associated with the message.
+ * @property {string} response[].title - The title of the response.
+ * @property {string} response[].content - The content of the response.
+ * @property {Document[]} response[].documentos - The list of documents associated with the response.
+ * @property {number} response[].documentos[].id - The identifier of the document.
+ * @property {string} response[].documentos[].nombre - The name of the document.
+ * @property {string} response[].documentos[].archivo - The URL of the document.
+ * @property {string} response[].documentos[].palabras_clave - The keywords of the document.
  */
 
 /**

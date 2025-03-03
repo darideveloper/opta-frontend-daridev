@@ -90,7 +90,7 @@ export default function ChatTextBox() {
       // Reset submoments
       setDataSubmomentos([])
     } else {
-      getSubmomento(momento).then(submomentos => {
+      getSubmomento(momento.id).then(submomentos => {
         setDataSubmomentos(submomentos.data)
       })      
     }
