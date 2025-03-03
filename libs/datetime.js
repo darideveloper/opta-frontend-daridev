@@ -1,3 +1,7 @@
+/**
+ * Get as string the current date and time in the format "dd/mm hh:mm:ss".
+ * @returns {string} The formatted date and time.
+ */
 export function getFormattedDateTime() {
   const now = new Date();
   const day = String(now.getDate()).padStart(2, '0');
