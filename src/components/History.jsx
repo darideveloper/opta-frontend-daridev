@@ -36,9 +36,9 @@ const HistoryComponent = ({ messages }) => {
         <h2 className="text-xl font-bold">Historial</h2>
         <button
           onClick={() => toggleHistory()}
-          className="text-gray-500 hover:text-gray-700 text-4xl flex"
+          className="text-gray-500 hover:text-gray-700 text-2xl flex"
         >
-          x
+          X
         </button>
       </div>
 
