@@ -5,6 +5,10 @@ import { getSubmomento } from "../../api/chatbot.api"
 import { getRespuesta } from "../../api/chatbot.api"
 import { getdocumentos } from "../../api/chatbot.api"
 
+// Components
+import Button from "../Button"
+
+
 export default function ChatTextBox() {
 
   // Zustand store
@@ -101,16 +105,16 @@ export default function ChatTextBox() {
       <div className="flex space-x-2">
         {/* Render submomentos of the current momento */}
         {dataSubmomentos.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-2">
             <div className="flex flex-wrap gap-2">
               {dataSubmomentos.map((subMoment) => (
-                <button
+                <Button
                   key={subMoment.id}
                   onClick={() => handleSubMomentClick(subMoment.id, subMoment.nombre)}
-                  className="px-3 py-1 rounded-full border-2 border-[#7D3C98] text-sm hover:bg-[#7D3C98] hover:text-white transition-colors"
+                  type="small"
                 >
                   {subMoment.nombre}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
