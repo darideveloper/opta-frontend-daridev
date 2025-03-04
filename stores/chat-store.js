@@ -39,7 +39,7 @@ export const useChatStore = create((set) => ({
   lastMomento: null,
   messages: [],
   history: [],
-  showHistory: false,
+  showHistory: true,
   setMomento: (momento) => set({ momento }),
   addMessage: (message) => {
     set((state) => {

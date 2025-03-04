@@ -9,7 +9,13 @@
  * @param {String} props.className - Button custom classes
  * @returns 
  */
-export default function Button ({onClick, isActive = false, type = "select", children, className}) {
+export default function Button({
+  onClick,
+  isActive = false,
+  type = "select",
+  children,
+  className,
+}) {
 
   const styles = {
     "select": "p-2 rounded-lg w-full",
