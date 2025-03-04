@@ -6,6 +6,10 @@ import { useChatStore } from "../../stores/chat-store"
 // Media
 import logo from "../assets/logo.webp"
 
+// Components
+import Button from "./Button"
+
+
 export default function Sidebar() {
 
   // Api data
@@ -130,25 +134,13 @@ export default function Sidebar() {
       <div className="flex-1 overflow-y-auto p-4">
         {/* render momentos of the current programa */}
         {dataMomento.map((moment) => (
-          <button
+          <Button
             key={moment.id}
+            isActive={moment.id == selectedMomento.id}
             onClick={() => setSelectedMomento({id: moment.id, name: moment.nombre})}
-            className={`
-              w-full
-              p-2
-              mb-2
-              text-left
-              border-2
-              border-[#7D3C98]
-              rounded-lg
-              ${moment.id == selectedMomento.id && "bg-[#7D3C98] text-white"}
-              hover:bg-[#7D3C98]
-              hover:text-white
-              transition-colors
-            `}
           >
-            {moment.nombre.charAt(0).toUpperCase() + moment.nombre.slice(1).toLowerCase()}
-          </button>
+            {moment.nombre}
+          </Button>
         ))}
       </div>
     </div>
