@@ -1,2 +1,1 @@
-git push origin master
-git push origin-daridev master
+git push origin master; git push origin-daridev master
