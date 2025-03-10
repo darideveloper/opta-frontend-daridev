@@ -76,7 +76,7 @@ export default function ChatTextBox() {
         if (respuestasData.length == 0) {
           respuestasData = [{
             title: "No se encontraron resultados",
-            content: "Inetnte otra opción",
+            content: "Intente otra opción",
             documentos: [],
           }]
         }
