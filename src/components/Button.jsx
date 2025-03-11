@@ -19,7 +19,7 @@ export default function Button({
 
   const styles = {
     "select": "p-2 rounded-lg w-full",
-    "small": "p-1 text-sm rounded-full text-center px-6"
+    "small": "p-1 text-sm rounded-full text-center px-2"
   }
 
   return (
