@@ -90,7 +90,7 @@ export default function ChatTextBox() {
   }
 
   useEffect(() => {
-    if (momento === null) {
+    if (momento === null || momento.id === null) {
       // Reset submoments
       setDataSubmomentos([])
     } else {
@@ -98,6 +98,9 @@ export default function ChatTextBox() {
         setDataSubmomentos(submomentos.data)
       })      
     }
+
+    console.log({momento})
+
   }, [momento])
 
   return (

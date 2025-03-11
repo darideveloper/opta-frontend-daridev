@@ -63,6 +63,7 @@ export default function Sidebar() {
       // Reset moments
       setDataMomento([])
       setSelectedMomento({id: null})
+      setMomento({id: null})
     } else {
       getMomento(selectedPrograma).then(momentos => {
         setDataMomento(momentos.data)
