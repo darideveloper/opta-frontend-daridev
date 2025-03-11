@@ -15,6 +15,7 @@ import { getFormattedDateTime } from '../libs/datetime'
  * @typedef {Object} Message
  * @property {string} user - Message sent by the user
  * @property {string} datetime - Datetime when the message was sent with the format "dd/mm hh:mm:ss"
+ * @property {string} type - The type of the message from user (query, submoment)
  * @property {Response[]} response - The list of responses associated with the message.
  * @property {string} response[].title - The title of the response.
  * @property {string} response[].content - The content of the response.
@@ -49,10 +50,15 @@ export const useChatStore = create((set) => ({
       // Save history
 
       // Create new momento in history if it's different from the last one
+      const messageType = message.type
+      const submomentoPrefix = messageType === "query" ? "Consulta: " : ""
+      message.user = submomentoPrefix + message.user
+      console.log(message)
+
       if (state.momento !== state.lastMomento || state.lastMomento === null) {
         stateData['history'] = [...state.history, { 
-          "momento": state.momento,
-          "messages": [message]
+          "momento": state.momento.id ? state.momento : {id: null, name: "Búsqueda"},
+          "messages": [message],
         }]
       } else {
         // Save message in last momento

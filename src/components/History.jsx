@@ -79,14 +79,12 @@ const HistoryComponent = ({ messages }) => {
         {
           history.map((entry, index) => {
             return (
-              <>
-                <HistoryEntry 
-                  key={index}
-                  momento={entry.momento}
-                  messages={entry.messages}
-                  index={index}
-                />
-              </>
+              <HistoryEntry 
+                key={index}
+                momento={entry.momento}
+                messages={entry.messages}
+                index={index}
+              />
             )
           })
         }

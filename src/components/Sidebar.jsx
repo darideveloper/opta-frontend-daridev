@@ -135,15 +135,13 @@ export default function Sidebar() {
       <div className="flex flex-col gap-2 p-4">
         {/* render momentos of the current programa */}
         {dataMomento.map((moment) => (
-          <>
-            <Button
-              key={moment.id}
-              isActive={moment.id == selectedMomento.id}
-              onClick={() => setSelectedMomento({id: moment.id, name: moment.nombre})}
-            >
-              {moment.nombre}
-            </Button>
-          </>
+          <Button
+            key={moment.id}
+            isActive={moment.id == selectedMomento.id}
+            onClick={() => setSelectedMomento({id: moment.id, name: moment.nombre})}
+          >
+            {moment.nombre}
+          </Button>
         ))}
       </div>
     </div>

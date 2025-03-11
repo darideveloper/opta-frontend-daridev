@@ -50,7 +50,8 @@ export default function ChatTextBox() {
       // Save a new message with all documents found
       addMessage({
         user: inputMessage,
-        response: response
+        response: response,
+        type: "query",
       })
     })
 
@@ -83,7 +84,8 @@ export default function ChatTextBox() {
 
         addMessage({
           user: subMomentoText,
-          response: respuestasData
+          response: respuestasData,
+          type: "submoment",
         })
       })
     }
