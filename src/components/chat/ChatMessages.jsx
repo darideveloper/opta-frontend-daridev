@@ -45,6 +45,9 @@ export default function ChatMessages() {
           <p
             className={`
               mb-2
+              capitalize
+              italic
+              font-bold
             `}
           >
             {user}

@@ -14,8 +14,8 @@ import { getFormattedDateTime } from '../libs/datetime'
 /**
  * @typedef {Object} Message
  * @property {string} user - Message sent by the user
- * @property {string} datetime - Datetime when the message was sent with the format "dd/mm hh:mm:ss"
- * @property {string} type - The type of the message from user (query, submoment)
+ * @property {string} datetime - auto calculated Datetime when the message was sent with the format "dd/mm hh:mm:ss"
+ * @property {string} type - The type of the message from user (query, submoment, recovery)
  * @property {Response[]} response - The list of responses associated with the message.
  * @property {string} response[].title - The title of the response.
  * @property {string} response[].content - The content of the response.
@@ -40,37 +40,39 @@ export const useChatStore = create((set) => ({
   lastMomento: null,
   messages: [],
   history: [],
-  showHistory: true,
+  showHistory: false,
   setMomento: (momento) => set({ momento }),
   addMessage: (message) => {
     set((state) => {
 
       let stateData = {}
 
-      // Save history
-
-      // Create new momento in history if it's different from the last one
-      const messageType = message.type
-      const submomentoPrefix = messageType === "query" ? "Consulta: " : ""
-      message.user = submomentoPrefix + message.user
-      console.log(message)
-
-      if (state.momento !== state.lastMomento || state.lastMomento === null) {
-        stateData['history'] = [...state.history, { 
-          "momento": state.momento.id ? state.momento : {id: null, name: "Búsqueda"},
-          "messages": [message],
-        }]
-      } else {
-        // Save message in last momento
-        const lastMomento = state.history[state.history.length - 1]
-        const messages = lastMomento.messages
-        lastMomento['messages'] = [...messages, message]
-        stateData['history'] = [...state.history.slice(0, -1), lastMomento]
-      }
-
       // Save message
       message['datetime'] = getFormattedDateTime()
       stateData['messages'] = [...state.messages, message]
+      
+      // Save history
+
+      // Create new momento in history if it's different from the last one
+      if (["query", "submoment"].includes(message.type)) {
+        const messageType = message.type
+        const submomentoPrefix = messageType === "query" ? "Consulta: " : ""
+        message.user = submomentoPrefix + message.user
+        console.log(message)
+  
+        if (state.momento !== state.lastMomento || state.lastMomento === null) {
+          stateData['history'] = [...state.history, { 
+            "momento": state.momento.id ? state.momento : {id: null, name: "Búsqueda"},
+            "messages": [message],
+          }]
+        } else {
+          // Save message in last momento
+          const lastMomento = state.history[state.history.length - 1]
+          const messages = lastMomento.messages
+          lastMomento['messages'] = [...messages, message]
+          stateData['history'] = [...state.history.slice(0, -1), lastMomento]
+        }
+      }
 
       // Save last momento
       stateData['lastMomento'] = state.momento
