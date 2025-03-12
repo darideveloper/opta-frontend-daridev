@@ -1,6 +1,3 @@
-// Icons
-import { SquareX } from 'lucide-react'
-
 // Libs
 import { useState, useEffect } from "react"
 import { getTipoLead, getMomento, getPrograma } from "../api/chatbot.api"
@@ -11,6 +8,7 @@ import logo from "../assets/logo.webp"
 
 // Components
 import Button from "./Button"
+import ButtonClose from "./ButtonClose"
 
 
 export default function Sidebar() {
@@ -120,25 +118,9 @@ export default function Sidebar() {
             `}
           >
             {/* Close button */}
-            <Button
+            <ButtonClose
               onClick={() => toggleNav()}
-              className={`
-                border-none
-                !p-0
-                w-auto
-                !bg-transparent
-                md:hidden
-              `}
-              isActive={true}
-            >
-              <SquareX
-                className={`
-                  w-10
-                  h-10
-                  text-[#7D3C98]
-                `}
-              />
-            </Button>
+            />
 
             {/* Logo */}
             <img src={logo || "/placeholder.svg"} alt="Logo" className="w-full mx-auto" />

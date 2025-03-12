@@ -5,6 +5,7 @@ import { useEffect } from "react"
 
 // Components
 import HistoryEntry from "./HistoryEntry"
+import ButtonClose from "./ButtonClose"
 
 
 const HistoryComponent = ({ messages }) => {
@@ -13,7 +14,6 @@ const HistoryComponent = ({ messages }) => {
   const toggleHistory = useChatStore(state => state.toggleHistory)
   const showHistorial = useChatStore(state => state.showHistory)
   const history = useChatStore(state => state.history)
-  console.log(history)
 
   // Effects
    useEffect(() => {
@@ -40,12 +40,10 @@ const HistoryComponent = ({ messages }) => {
 
         {/* Header */}
         <h2 className="text-xl font-bold">Historial</h2>
-        <button
+        
+        <ButtonClose 
           onClick={() => toggleHistory()}
-          className="text-gray-500 hover:text-gray-700 text-2xl flex"
-        >
-          X
-        </button>
+        />
       </div>
 
       {/* messages */}
