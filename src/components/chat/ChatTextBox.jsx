@@ -127,7 +127,11 @@ export default function ChatTextBox() {
       </div>
 
       <form 
-        className="flex mt-4"
+        className={`
+          flex
+          mt-4
+          flex-col md:flex-row
+        `}
         onSubmit={handleSendMessage}
       >
         <input
@@ -138,7 +142,15 @@ export default function ChatTextBox() {
           onChange={(e) => setInputMessage(e.target.value)}
         />
         <button
-          className="px-4 py-2 bg-[#7D3C98] text-white rounded-r-md hover:bg-[#7D3C98] uppercase"
+          className={`
+            px-4
+            py-2
+            bg-[#7D3C98]
+            text-white
+            rounded-md md:rounded-l-none
+            hover:bg-[#7D3C98]
+            uppercase
+          `}
         >
           Consultar
         </button>
