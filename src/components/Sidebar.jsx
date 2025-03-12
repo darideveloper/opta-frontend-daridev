@@ -78,6 +78,9 @@ export default function Sidebar() {
   useEffect(() => {
     setMomento(selectedMomento)
     resetMessages()
+    if (selectedMomento.id != null) {
+      toggleNav()
+    }
   }, [selectedMomento])
 
   // Monitor chat state 
