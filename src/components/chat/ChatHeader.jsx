@@ -21,10 +21,10 @@ export default function ChatHeader() {
         py-8
         shadow
         flex
-        flex-col sm:flex-row
-        justify-between
+        flex-wrap sm:flex-row
+        justify-center md:justify-between
         items-center
-        gap-4
+        gap-2 md:gap-4
       `}>
 
       <Button
