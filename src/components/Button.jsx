@@ -29,10 +29,9 @@ export default function Button({
         text-left
         border-2
         border-[#7D3C98]
+        duration-200
         ${isActive && "bg-[#7D3C98] text-white"}
-        hover:bg-[#7D3C98]
-        hover:text-white
-        transition-colors
+        ${isActive ? "hover:scale-105 hover:opacity-80" : "hover:bg-[#7D3C98] hover:text-white"}
         capitalize
         ${styles[type]}
         ${className}

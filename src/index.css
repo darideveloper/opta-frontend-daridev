@@ -29,3 +29,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #6a3282;
 }
+
+.debug {
+  border: 1px solid red
+}

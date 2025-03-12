@@ -1,3 +1,6 @@
+// Icons
+import { SquareX } from 'lucide-react'
+
 // Libs
 import { useState, useEffect } from "react"
 import { getTipoLead, getMomento, getPrograma } from "../api/chatbot.api"
@@ -16,11 +19,11 @@ export default function Sidebar() {
   const [dataTipoLead, setDataTipoLead] = useState([])
   const [dataPrograma, setDataPrograma] = useState([])
   const [dataMomento, setDataMomento] = useState([])
-  
+
   // Sidebar state
   const [selectedTipoLead, setSelectedTipoLead] = useState(null)
   const [selectedPrograma, setSelectedPrograma] = useState(null)
-  const [selectedMomento, setSelectedMomento] = useState({id: null})
+  const [selectedMomento, setSelectedMomento] = useState({ id: null })
 
   // Render texts
   const tipoLeadNames = dataTipoLead.map((tipo) => tipo.nombre)
@@ -28,6 +31,8 @@ export default function Sidebar() {
   // Zustand store
   const setMomento = useChatStore(state => state.setMomento)
   const resetMessages = useChatStore(state => state.resetMessages)
+  const showNav = useChatStore(state => state.showNav)
+  const toggleNav = useChatStore(state => state.toggleNav)
 
   // Load tipo leads when mounted
   useEffect(() => {
@@ -45,7 +50,7 @@ export default function Sidebar() {
 
   // Update programs when change tipo lead
   useEffect(() => {
-    if (selectedTipoLead === null) {return}
+    if (selectedTipoLead === null) { return }
 
     // Update program options
     getPrograma(selectedTipoLead).then(programas => {
@@ -62,8 +67,8 @@ export default function Sidebar() {
     if (selectedPrograma === null || selectedPrograma === "") {
       // Reset moments
       setDataMomento([])
-      setSelectedMomento({id: null})
-      setMomento({id: null})
+      setSelectedMomento({ id: null })
+      setMomento({ id: null })
     } else {
       getMomento(selectedPrograma).then(momentos => {
         setDataMomento(momentos.data)
@@ -83,13 +88,60 @@ export default function Sidebar() {
   // }, [selectedTipoLead, selectedPrograma, selectedMomento])
 
   return (
-    <div className="w-64 bg-whiteflex flex-col">
+    <div
+      className={`
+        w-64
+        bg-[#F9F9F9]
+        flex-col
+        fixed md:static
+        h-screen
+        ${showNav ? 'left-0' : '-left-96'}
+        duration-300
+        shadow-2xl md:shadow-none
+        z-20
+      `}
+    >
       <div className="p-4">
         <div className="mb-4">
 
-          {/* Logo */}
-          <div className="flex items-center border-b border-gray-400 mb-12 py-6">
-            <img src={logo || "/placeholder.svg"} alt="Logo" className="w-10/12 mx-auto" />
+          {/* Logo and close btn*/}
+          <div 
+            className={`
+              flex
+              border-b
+              border-gray-400
+              mb-12
+              pb-6
+              md:pt-3
+              flex-col
+              items-end
+              justify-center
+              gap-2
+            `}
+          >
+            {/* Close button */}
+            <Button
+              onClick={() => toggleNav()}
+              className={`
+                border-none
+                !p-0
+                w-auto
+                !bg-transparent
+                md:hidden
+              `}
+              isActive={true}
+            >
+              <SquareX
+                className={`
+                  w-10
+                  h-10
+                  text-[#7D3C98]
+                `}
+              />
+            </Button>
+
+            {/* Logo */}
+            <img src={logo || "/placeholder.svg"} alt="Logo" className="w-full mx-auto" />
           </div>
 
           {/* toggle tipo lead */}
@@ -118,7 +170,7 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <select 
+        <select
           className="w-full p-2 border border-gray-300 rounded-md bg-[#7D3C98] text-white"
           onChange={(e) => setSelectedPrograma(e.target.value)}
         >
@@ -138,7 +190,7 @@ export default function Sidebar() {
           <Button
             key={moment.id}
             isActive={moment.id == selectedMomento.id}
-            onClick={() => setSelectedMomento({id: moment.id, name: moment.nombre})}
+            onClick={() => setSelectedMomento({ id: moment.id, name: moment.nombre })}
           >
             {moment.nombre}
           </Button>
