@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-purple: theme('colors.purple');
+  --color-grey-light: theme('colors.grey.light');
+}
 
+/* ---- Global styles ---- */
+
+.debug {
+  border: 1px solid red
+}
 
 body {
   margin: 0;
@@ -12,6 +21,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+/* ---- Custom scroll bar ---- */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -30,6 +42,23 @@ body {
   background: #6a3282;
 }
 
-.debug {
-  border: 1px solid red
+/* ---- Customize sweet alert ---- */
+
+
+/* Global buttons styles */
+.swal2-actions button {
+  transition-duration: 200ms;
+  transition-property: transform, opacity;
+}
+
+.swal2-actions button:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* Confirm button colors */
+.swal2-actions button.swal2-confirm {
+  color: white;
+  background-color: var(--color-purple);
+  border-color: var(--color-purple);
 }

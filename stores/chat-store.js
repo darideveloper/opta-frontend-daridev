@@ -83,6 +83,7 @@ export const useChatStore = create((set) => ({
     })
   },
   resetMessages: () => set({ messages: [] }),
+  resetHistory: () => set({ history: [] }),
   toggleHistory: () => set((state) => ({ showHistory: !state.showHistory })),
   toggleNav: () => set((state) => ({ showNav: !state.showNav }))
 }))

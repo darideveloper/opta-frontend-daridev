@@ -3,6 +3,7 @@ import { History, Menu } from "lucide-react"
 
 // Libs
 import { useChatStore } from "../../../stores/chat-store"
+import Swal from 'sweetalert2'
 
 // Components
 import Button from "../Button"
@@ -13,6 +14,7 @@ export default function ChatHeader() {
   // Zustand store
   const toggleHistory = useChatStore(state => state.toggleHistory)
   const toggleNav = useChatStore(state => state.toggleNav)
+  const resetHistory = useChatStore(state => state.resetHistory)
   
   return (
     <div className={`
@@ -39,7 +41,20 @@ export default function ChatHeader() {
       </Button>
 
       <Button
-        onClick={() => alert("Nueva Conversación")}
+        onClick={() => {
+          Swal.fire({
+            title: 'Atención',
+            text: '¿Estás seguro de querer reiniciar la conversión? El historial se borrará.',
+            icon: 'warning',
+            confirmButtonText: 'Cancelar',
+            showDenyButton: true,
+            denyButtonText: 'Reiniciar y borrar historial',
+          })
+
+          // // Reset history and refresh page
+          // resetHistory()
+          // window.location.reload()
+        }}
         isActive={true}
         className={`
           !w-auto
