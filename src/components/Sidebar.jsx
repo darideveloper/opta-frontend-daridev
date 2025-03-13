@@ -178,6 +178,7 @@ export default function Sidebar() {
           <Button
             key={moment.id}
             isActive={moment.id == selectedMomento.id}
+            isActiveHover={false}
             onClick={() => setSelectedMomento({ id: moment.id, name: moment.nombre })}
           >
             {moment.nombre}

@@ -21,6 +21,7 @@ export default function HistoryEntry ({momento, messages, index}) {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         isActive={isOpen}
+        isActiveHover={false}
       >
         {index + 1}) {momento.name}
       </Button>

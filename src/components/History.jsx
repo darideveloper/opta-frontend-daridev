@@ -46,19 +46,6 @@ const HistoryComponent = ({ messages }) => {
         />
       </div>
 
-      {/* messages */}
-      {/* <div className="space-y-4">
-        {messages.map((message, index) => {
-          return (
-            <div key={index} className="p-2 bg-gray-100 rounded-md shadow">
-              <p className="font-medium text-purple">{message.title}</p>
-              <p>{message.content}</p>
-              <p className="text-sm text-gray-500">{message.timestamp}</p>
-            </div>
-          )
-        })}
-      </div> */}
-
       {/* History items */}
       <div
         className={`
