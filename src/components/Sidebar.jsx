@@ -123,6 +123,9 @@ export default function Sidebar() {
             {/* Close button */}
             <ButtonClose
               onClick={() => toggleNav()}
+              className={`
+                md:hidden
+              `}
             />
 
             {/* Logo */}

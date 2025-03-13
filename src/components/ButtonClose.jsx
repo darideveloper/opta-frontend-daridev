@@ -18,9 +18,8 @@ export default function ButtonClose({ onClick, className }) {
       className={`
         border-none
         !p-0
-        w-auto
+        !w-auto
         !bg-transparent
-        md:hidden
         ${className}
       `}
       isActive={true}
