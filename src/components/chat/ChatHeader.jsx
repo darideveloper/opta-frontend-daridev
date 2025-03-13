@@ -31,8 +31,8 @@ export default function ChatHeader() {
         onClick={() => toggleNav()}
         isActive={true}
         className={`
-          w-auto
           md:hidden
+          !w-auto
         `}
       >
         <Menu className="w-5 h-5" />
@@ -42,7 +42,7 @@ export default function ChatHeader() {
         onClick={() => alert("Nueva Conversación")}
         isActive={true}
         className={`
-          w-auto
+          !w-auto
         `}
       >
         Nueva Conversación
@@ -52,10 +52,10 @@ export default function ChatHeader() {
         onClick={() => toggleHistory()}
         isActive={true}
         className={`
-          w-auto
           flex
           items-center
           gap-2
+          !w-auto
         `}
       >
         {/* Icon */}
