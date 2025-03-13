@@ -92,7 +92,7 @@ export default function Sidebar() {
     <div
       className={`
         w-64
-        bg-[#F9F9F9]
+        bg-grey-light
         flex-col
         fixed md:static
         h-screen
@@ -147,7 +147,7 @@ export default function Sidebar() {
                   }
                 }}
               />
-              <div className="w-11 h-6 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all bg-[#7D3C98] rotate-180"></div>
+              <div className="w-11 h-6 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all bg-purple rotate-180"></div>
             </label>
             <span className="text-sm font-medium">
               {tipoLeadNames[1]}
@@ -156,7 +156,7 @@ export default function Sidebar() {
         </div>
 
         <select
-          className="w-full p-2 border border-gray-300 rounded-md bg-[#7D3C98] text-white"
+          className="w-full p-2 border border-gray-300 rounded-md bg-purple text-white"
           onChange={(e) => setSelectedPrograma(e.target.value)}
         >
           <option value="">Programas</option>

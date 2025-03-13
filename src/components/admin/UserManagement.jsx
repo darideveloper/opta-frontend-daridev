@@ -85,7 +85,7 @@ function UserManagement() {
                         setFormData({ name: '', email: '', password: '', role: 'user' });
                         setShowModal(true);
                     }}
-                    className="flex items-center gap-2 px-4 py-2 bg-[#7D3C98] text-white rounded-lg hover:bg-[#7D3C98]"
+                    className="flex items-center gap-2 px-4 py-2 bg-purple text-white rounded-lg hover:bg-purple"
                 >
                     <UserPlus size={20} />
                     Nuevo Usuario
@@ -194,7 +194,7 @@ function UserManagement() {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 bg-[#7D3C98] text-white rounded-md hover:bg-[#7D3C98]"
+                                    className="px-4 py-2 bg-purple text-white rounded-md hover:bg-purple"
                                 >
                                     {editingUser ? 'Guardar Cambios' : 'Crear Usuario'}
                                 </button>

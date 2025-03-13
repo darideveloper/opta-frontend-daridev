@@ -29,7 +29,7 @@ export default function ButtonClose({ onClick, className }) {
         className={`
           w-10
           h-10
-          text-[#7D3C98]
+          text-purple
         `}
       />
     </Button>

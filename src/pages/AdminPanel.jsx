@@ -11,13 +11,13 @@ function AdminPanel() {
     <div className="flex h-screen bg-gray-100">
       <aside className="w-64 bg-white border-r">
         <div className="p-6">
-          <h1 className="text-xl font-bold text-[#7D3C98]">Panel Admin</h1>
+          <h1 className="text-xl font-bold text-purple">Panel Admin</h1>
         </div>
         <nav className="px-4">
           <NavLink
             to="/admin/users"
             className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive ? 'bg-purple-50 text-[#7D3C98]' : 'text-gray-600 hover:bg-gray-50'
+              `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive ? 'bg-purple-50 text-purple' : 'text-gray-600 hover:bg-gray-50'
               }`
             }
           >
@@ -27,7 +27,7 @@ function AdminPanel() {
           <NavLink
             to="/admin/content"
             className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive ? 'bg-purple-50 text-[#7D3C98]' : 'text-gray-600 hover:bg-gray-50'
+              `flex items-center gap-2 px-4 py-2 rounded-lg ${isActive ? 'bg-purple-50 text-purple' : 'text-gray-600 hover:bg-gray-50'
               }`
             }
           >

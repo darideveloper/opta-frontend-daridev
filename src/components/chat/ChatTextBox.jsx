@@ -136,7 +136,7 @@ export default function ChatTextBox() {
       >
         <input
           type="text"
-          className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[#7D3C98]"
+          className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-purple"
           placeholder="Escribe palabras clave para buscar archivos"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
@@ -145,10 +145,10 @@ export default function ChatTextBox() {
           className={`
             px-4
             py-2
-            bg-[#7D3C98]
+            bg-purple
             text-white
             rounded-md md:rounded-l-none
-            hover:bg-[#7D3C98]
+            hover:bg-purple
             uppercase
           `}
         >

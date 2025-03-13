@@ -17,10 +17,10 @@ const Sidebar = ({ isNewLead, setIsNewLead, programs, moments, handleMomentClick
             checked={!isNewLead}
             onChange={() => setIsNewLead(!isNewLead)}
           />
-          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7D3C98]"></div>
+          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-purple"></div>
         </label>
       </div>
-      <select className="w-full p-2 border border-gray-300 rounded-md bg-[#7D3C98] text-white">
+      <select className="w-full p-2 border border-gray-300 rounded-md bg-purple text-white">
         <option value="">Carreras</option>
         {programs.map((program) => (
           <option key={program.id} value={program.id}>
@@ -34,7 +34,7 @@ const Sidebar = ({ isNewLead, setIsNewLead, programs, moments, handleMomentClick
         <button
           key={moment.id}
           onClick={() => handleMomentClick(moment)}
-          className="w-full p-2 mb-2 text-left border-2 border-[#7D3C98] rounded-lg hover:bg-[#7D3C98] hover:text-white transition-colors"
+          className="w-full p-2 mb-2 text-left border-2 border-purple rounded-lg hover:bg-purple hover:text-white transition-colors"
         >
           {moment.name}
         </button>

@@ -62,7 +62,7 @@ const Chat = () => {
                     setMessages([])
                     setShowNewConversation(false)
                   }}
-                  className="px-4 py-2 bg-[#7D3C98] text-white rounded-md hover:bg-[#7D3C98]"
+                  className="px-4 py-2 bg-purple text-white rounded-md hover:bg-purple"
                 >
                   Confirmar
                 </button>

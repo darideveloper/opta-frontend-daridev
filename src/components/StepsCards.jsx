@@ -35,7 +35,7 @@ export default function StepsCards({ steps }) {
               <div className="mb-4 p-4 rounded-lg bg-white shadow">
 
                 {/* Title */}
-                <div className="font-medium text-[#7D3C98] mb-2">{title}</div>
+                <div className="font-medium text-purple mb-2">{title}</div>
 
                 {/* Main text */}
                 <p>{content}</p>
@@ -44,7 +44,7 @@ export default function StepsCards({ steps }) {
                 <div className="flex space-x-2 mt-2">
                   <button
                     className={`
-                      text-[#7D3C98] 
+                      text-purple 
                       hover:text-purple-800
                       ${!btnEnable && 'opacity-50'}
                     `}

@@ -51,7 +51,7 @@ const HistoryComponent = ({ messages }) => {
         {messages.map((message, index) => {
           return (
             <div key={index} className="p-2 bg-gray-100 rounded-md shadow">
-              <p className="font-medium text-[#7D3C98]">{message.title}</p>
+              <p className="font-medium text-purple">{message.title}</p>
               <p>{message.content}</p>
               <p className="text-sm text-gray-500">{message.timestamp}</p>
             </div>

@@ -37,7 +37,7 @@ export default function Document({ documentoUrl, documentoNombre }) {
         <span
           className={`
             font-bold
-            text-[#7D3C98]
+            text-purple
           `}
         >
           .{fileExt && fileExt.toUpperCase()}
@@ -49,7 +49,7 @@ export default function Document({ documentoUrl, documentoNombre }) {
             icon
             w-14 h-14
             inline-block
-            stroke-[#7D3C98]
+            stroke-purple
           `}
         />
 

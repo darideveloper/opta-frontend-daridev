@@ -7,7 +7,7 @@ export default function Footer() {
           justify-center
           items-center
           flex-col sm:flex-row
-          bg-[#7D3C98]
+          bg-purple
           text-white
           gap-0 sm:gap-6
           py-2

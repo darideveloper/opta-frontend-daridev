@@ -47,7 +47,7 @@ function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-[#7D3C98]"
+              className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-purple"
               required
             />
           </div>
@@ -65,7 +65,7 @@ function Login() {
           </div>
           <button
             type="submit"
-            className="w-full bg-[#7D3C98] text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline"
+            className="w-full bg-purple text-white font-bold py-2 px-4 rounded hover:bg-purple-700 focus:outline-none focus:shadow-outline"
           >
             Ingresar
           </button>
