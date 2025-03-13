@@ -49,11 +49,12 @@ export default function ChatHeader() {
             confirmButtonText: 'Cancelar',
             showDenyButton: true,
             denyButtonText: 'Reiniciar y borrar historial',
+          }).then((result) => {
+            if (result.isDenied) {
+              resetHistory()
+              window.location.reload()
+            }
           })
-
-          // // Reset history and refresh page
-          // resetHistory()
-          // window.location.reload()
         }}
         isActive={true}
         className={`
