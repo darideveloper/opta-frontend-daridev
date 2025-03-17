@@ -24,9 +24,6 @@ export default function ChatTextBox() {
   // handlers
   function handleSendMessage(e) {
 
-    // Prevent default
-    e.preventDefault()
-
     // Get tags from user message
     const tags = inputMessage.split(" ")
     const tagsString = tags.join(",")
@@ -133,16 +130,8 @@ export default function ChatTextBox() {
           mt-4
           flex-col md:flex-row
         `}
-        onSubmit={handleSendMessage}
+        onSubmit={(e) => e.preventDefault()}
       >
-        {/* <input
-          type="text"
-          className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-purple"
-          placeholder="Escribe palabras clave para buscar archivos"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-        /> */}
-
         <Input 
           type="text"
           placeholder="Escribe palabras clave para buscar archivos"
@@ -153,19 +142,18 @@ export default function ChatTextBox() {
             md:rounded-l-md
           `}
         />
-        <button
+        <Button
+          disabled={inputMessage === ''}
+          type="select"
+          isActive={true}
           className={`
-            px-4
-            py-2
-            bg-purple
-            text-white
-            rounded-md md:rounded-l-none
-            hover:bg-purple
-            uppercase
+            w-full md:w-28
+            text-center
           `}
+          onClick={handleSendMessage}
         >
           Consultar
-        </button>
+        </Button>
       </form>
     </div>
   )

@@ -17,6 +17,7 @@ export default function Button({
   type = "select",
   children,
   className,
+  disabled = false
 }) {
 
   const styles = {
@@ -26,16 +27,17 @@ export default function Button({
 
   return (
     <button
-      onClick={onClick}
+      onClick={() => !disabled && onClick()}
       className={`
         text-left
         border-2
         border-purple
         duration-200
         ${isActive && "bg-purple text-white"}
-        ${(isActive && isActiveHover) ? "hover:scale-105 hover:opacity-80" : "hover:bg-purple hover:text-white"}
+        ${!disabled && (isActive && isActiveHover) ? "hover:scale-105 hover:opacity-80" : "hover:bg-purple hover:text-white"}
         capitalize
         ${styles[type]}
+        ${disabled && 'opacity-50 cursor-default'}
         ${className}
       `}
     >
