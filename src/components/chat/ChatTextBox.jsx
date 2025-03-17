@@ -7,6 +7,7 @@ import { getdocumentos } from "../../api/chatbot.api"
 
 // Components
 import Button from "../Button"
+import Input from "../Input"
 
 
 export default function ChatTextBox() {
@@ -134,12 +135,23 @@ export default function ChatTextBox() {
         `}
         onSubmit={handleSendMessage}
       >
-        <input
+        {/* <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-purple"
           placeholder="Escribe palabras clave para buscar archivos"
           value={inputMessage}
           onChange={(e) => setInputMessage(e.target.value)}
+        /> */}
+
+        <Input 
+          type="text"
+          placeholder="Escribe palabras clave para buscar archivos"
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+          className={`
+            md:rounded-none
+            md:rounded-l-md
+          `}
         />
         <button
           className={`
