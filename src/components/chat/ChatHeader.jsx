@@ -1,5 +1,5 @@
 // Icons
-import { History, Menu } from "lucide-react"
+import { History, Menu, User } from "lucide-react"
 
 // Libs
 import { useChatStore } from "../../../stores/chat-store"
@@ -64,22 +64,48 @@ export default function ChatHeader() {
         Nueva Conversación
       </Button>
 
-      <Button
-        onClick={() => toggleHistory()}
-        isActive={true}
+      <div
         className={`
           flex
+          justify-center
           items-center
-          gap-2
-          !w-auto
+          gap-4
         `}
       >
-        {/* Icon */}
-        <History className="w-5 h-5" />
+        <Button
+          onClick={() => toggleHistory()}
+          isActive={true}
+          className={`
+            flex
+            items-center
+            gap-2
+            !w-auto
+          `}
+        >
+          {/* Icon */}
+          <History className="w-5 h-5" />
 
-        {/* Text */}
-        <span>Historial</span>
-      </Button>
+          {/* Text */}
+          <span>Historial</span>
+        </Button>
+
+        <Button
+          onClick={() => toggleHistory()}
+          isActive={true}
+          className={`
+            flex
+            items-center
+            gap-2
+            !w-auto
+          `}
+        >
+          {/* Icon */}
+          <User className="w-5 h-5" />
+
+          {/* Text */}
+          <span>Perfil</span>
+        </Button>
+      </div>
     </div>
   )
 }
