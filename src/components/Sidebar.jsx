@@ -83,11 +83,7 @@ export default function Sidebar() {
     }
   }, [selectedMomento])
 
-  // Monitor chat state 
-  // useEffect(() => {
-  //   console.log({ selectedTipoLead, selectedPrograma, selectedMomento })
-  // }, [selectedTipoLead, selectedPrograma, selectedMomento])
-
+  
   return (
     <div
       className={`

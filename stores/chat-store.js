@@ -59,7 +59,6 @@ export const useChatStore = create((set) => ({
         const messageType = message.type
         const submomentoPrefix = messageType === "query" ? "Consulta: " : ""
         message.user = submomentoPrefix + message.user
-        console.log(message)
   
         if (state.momento !== state.lastMomento || state.lastMomento === null) {
           stateData['history'] = [...state.history, { 

@@ -13,7 +13,6 @@ export async function login(username, password) {
     username: username,
     password: password
   }
-  console.log({jsonData})
 
   let response
   let jsonResponse

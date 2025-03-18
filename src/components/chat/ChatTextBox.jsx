@@ -98,9 +98,6 @@ export default function ChatTextBox() {
         setDataSubmomentos(submomentos.data)
       })      
     }
-
-    console.log({momento})
-
   }, [momento])
 
   return (

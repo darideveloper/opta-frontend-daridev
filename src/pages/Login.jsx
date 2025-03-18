@@ -10,19 +10,22 @@ import Button from '../components/Button'
 // Media
 import logo from "../assets/logo.webp"
 
+// Zustand
+import { useAuthStore } from '../../stores/auth'
+
 
 export default function Login() {
+
+  // Local state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  // Data
   const contactEmail = "test@gmail.com"
 
+  // Zustand store
+  const setToken = useAuthStore(state => state.setToken)
 
-  useEffect(() => {
-    login("test", "lYQd241wrVq7GVfgBV64CkJfLoR16af").then((token) => {
-      console.log({ token })
-    })
-  }, [])
 
   return (
     <div
@@ -87,6 +90,8 @@ export default function Login() {
                   title: 'Inicio de Sesión Exitoso',
                   icon: 'success',
                   confirmButtonText: 'Continuar',
+                }).then(() => {
+                  setToken(token)
                 })
               } else {
                 Swal.fire({
