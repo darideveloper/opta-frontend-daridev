@@ -1,6 +1,7 @@
 // Libs
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
+import { login } from '../api/auth'
 
 // Components
 import Input from '../components/Input'
@@ -15,6 +16,13 @@ export default function Login() {
   const [password, setPassword] = useState('')
 
   const contactEmail = "test@gmail.com"
+
+
+  useEffect(() => {
+    login("test", "lYQd241wrVq7GVfgBV64CkJfLoR16af").then((token) => {
+      console.log({ token })
+    })
+  }, [])
 
   return (
     <div
@@ -41,8 +49,9 @@ export default function Login() {
           p-6
           max-w-lg
         `}
+        onClick={(e) => e.preventDefault()}
       >
-        <img 
+        <img
           src={logo}
           alt="Logo"
           className={`
@@ -52,7 +61,7 @@ export default function Login() {
           `}
         />
 
-        <Input 
+        <Input
           type="email"
           placeholder="Correo Electrónico"
           value={email}
@@ -71,7 +80,23 @@ export default function Login() {
         <Button
           type="select"
           isActive={true}
-          onClick={() => console.log('Iniciar Sesión')}
+          onClick={() => {
+            login(email, password).then((token) => {
+              if (token) {
+                Swal.fire({
+                  title: 'Inicio de Sesión Exitoso',
+                  icon: 'success',
+                  confirmButtonText: 'Continuar',
+                })
+              } else {
+                Swal.fire({
+                  title: 'Inicio de Sesión Fallido',
+                  icon: 'error',
+                  confirmButtonText: 'Reintentar',
+                })
+              }
+            })
+          }}
           className={`
             mt-4
             w-full
