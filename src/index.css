@@ -62,3 +62,7 @@ body {
   background-color: var(--color-purple);
   border-color: var(--color-purple);
 }
+
+.swal2-html-container a {
+  color: var(--color-purple);
+}
