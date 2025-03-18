@@ -42,6 +42,7 @@ export const useChatStore = create((set) => ({
   history: [],
   showHistory: false,
   showNav: true,
+  showProfile: false,
   setMomento: (momento) => set({ momento }),
   addMessage: (message) => {
     set((state) => {
@@ -84,5 +85,6 @@ export const useChatStore = create((set) => ({
   resetMessages: () => set({ messages: [] }),
   resetHistory: () => set({ history: [] }),
   toggleHistory: () => set((state) => ({ showHistory: !state.showHistory })),
-  toggleNav: () => set((state) => ({ showNav: !state.showNav }))
+  toggleNav: () => set((state) => ({ showNav: !state.showNav })),
+  toggleProfile: () => set((state) => ({ showProfile: !state.showProfile }))
 }))

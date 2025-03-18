@@ -8,7 +8,7 @@ import HistoryEntry from "./HistoryEntry"
 import ButtonClose from "./ButtonClose"
 
 
-const HistoryComponent = ({ messages }) => {
+const History = () => {
 
   // Zustand store
   const toggleHistory = useChatStore(state => state.toggleHistory)
@@ -77,4 +77,4 @@ const HistoryComponent = ({ messages }) => {
     </div>
   )
 }
-export default HistoryComponent
+export default History

@@ -14,6 +14,7 @@ export default function ChatHeader() {
   // Zustand store
   const toggleHistory = useChatStore(state => state.toggleHistory)
   const toggleNav = useChatStore(state => state.toggleNav)
+  const toggleProfile = useChatStore(state => state.toggleProfile)
   const resetHistory = useChatStore(state => state.resetHistory)
   
   return (
@@ -90,7 +91,7 @@ export default function ChatHeader() {
         </Button>
 
         <Button
-          onClick={() => toggleHistory()}
+          onClick={() => toggleProfile()}
           isActive={true}
           className={`
             flex

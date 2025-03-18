@@ -3,12 +3,13 @@
 import { useState } from "react"
 
 // Components
-import HistoryComponent from "../components/History"
+import History from "../components/History"
 import Sidebar from "../components/Sidebar"
 import ChatHeader from "../components/chat/ChatHeader"
 import ChatMessages from "../components/chat/ChatMessages"
 import ChatTextBox from "../components/chat/ChatTextBox"
 import Footer from "../components/Footer"
+import Profile from "../components/Profile"
 
 
 const Chat = () => {
@@ -34,10 +35,13 @@ const Chat = () => {
         </div>
 
         {/* Historial Sidebar */}
-        <HistoryComponent 
+        <History 
           messages={[]} 
           onClose={() => {}}
         />
+
+        {/* Profile sidebar */}
+        <Profile />
 
       </main>
 
