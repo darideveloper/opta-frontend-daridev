@@ -8,9 +8,10 @@
  * @param {Function} props.onChange - Función que se ejecuta al cambiar el valor del input
  * @param {Boolean} props.required - Indica si el input es requerido
  * @param {String} props.className - Clases adicionales del input
+ * @param {Object} props.props - Otras propiedades del input
  * @returns {JSX.Element} - Elemento JSX
  */
-export default function Input({ type, placeholder, value, onChange, required, className }) {
+export default function Input({ type, placeholder, value, onChange, required, className, ...props }) {
   return (
     <input
       type={type}
@@ -28,6 +29,7 @@ export default function Input({ type, placeholder, value, onChange, required, cl
       value={value}
       onChange={onChange}
       required={required}
+      {...props}
     />
   )
 }
