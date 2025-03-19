@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { getSubmomento } from "../../api/chatbot.api"
 import { getRespuesta } from "../../api/chatbot.api"
-import { getdocumentos } from "../../api/chatbot.api"
+import { getDocumentos } from "../../api/chatbot.api"
 
 // Zustand
 import { useChatStore } from "../../../stores/chat-store"
@@ -16,6 +16,8 @@ export default function ChatTextBox() {
 
   // Zustand store
   const token = useAuthStore(state => state.token)
+  const deleteToken = useAuthStore(state => state.deleteToken)
+
   const momento = useChatStore((state) => state.momento)
   const addMessage = useChatStore(state => state.addMessage)
   const resetMessages = useChatStore(state => state.resetMessages)
@@ -30,11 +32,11 @@ export default function ChatTextBox() {
     // Get tags from user message
     const tags = inputMessage.split(" ")
     const tagsString = tags.join(",")
-    getdocumentos(token, tagsString).then(documentos => {
+    getDocumentos(token, deleteToken, tagsString).then(documentos => {
 
       // Change response if there are no documents
       let response
-      if (documentos.data.length == 0) {
+      if (documentos.length == 0) {
         response = [{
           title: "No se encontraron resultados",
           content: "Intenta con otras palabras clave",
@@ -44,7 +46,7 @@ export default function ChatTextBox() {
         response = [{
           title: "Documentos encontrados",
           content: "Estos son los documentos encontrados con tu búsqueda",
-          documentos: documentos.data
+          documentos: documentos
         }]
       }
       
@@ -67,9 +69,9 @@ export default function ChatTextBox() {
       resetMessages()
     } else {
       // Add messages
-      getRespuesta(token, subMomentId).then(respuestas => {
+      getRespuesta(token, deleteToken, subMomentId).then(respuestas => {
 
-        let respuestasData = respuestas.data.map(respuesta => ({
+        let respuestasData = respuestas.map(respuesta => ({
           title: respuesta.titulo,
           content: respuesta.contenido,
           documentos: respuesta.documento ? [respuesta.documento] : [],
@@ -97,8 +99,8 @@ export default function ChatTextBox() {
       // Reset submoments
       setDataSubmomentos([])
     } else {
-      getSubmomento(token, momento.id).then(submomentos => {
-        setDataSubmomentos(submomentos.data)
+      getSubmomento(token, deleteToken, momento.id).then(submomentos => {
+        setDataSubmomentos(submomentos)
       })      
     }
   }, [momento])

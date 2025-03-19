@@ -18,6 +18,7 @@ export default function Sidebar() {
 
   // Zustand data
   const token = useAuthStore(state => state.token)
+  const deleteToken = useAuthStore(state => state.deleteToken)
 
   // Api data
   const [dataTipoLead, setDataTipoLead] = useState([])
@@ -42,9 +43,10 @@ export default function Sidebar() {
   useEffect(() => {
     async function loadAll() {
       try {
-        const tipoLead = await getTipoLead(token)
-        setDataTipoLead(tipoLead.data)
-        setSelectedTipoLead(tipoLead.data[0]?.id)
+        const tipoLead = await getTipoLead(token, deleteToken)
+        console.log({tipoLead})
+        setDataTipoLead(tipoLead)
+        setSelectedTipoLead(tipoLead[0]?.id)
       } catch (error) {
         console.error("Error fetching data:", error)
       }
@@ -57,8 +59,9 @@ export default function Sidebar() {
     if (selectedTipoLead === null) { return }
 
     // Update program options
-    getPrograma(token, selectedTipoLead).then(programas => {
-      setDataPrograma(programas.data)
+    getPrograma(token, deleteToken, selectedTipoLead).then(programas => {
+      console.log({programas})
+      setDataPrograma(programas)
     })
 
     // Reset selected program
@@ -74,8 +77,8 @@ export default function Sidebar() {
       setSelectedMomento({ id: null })
       setMomento({ id: null })
     } else {
-      getMomento(token, selectedPrograma).then(momentos => {
-        setDataMomento(momentos.data)
+      getMomento(token, deleteToken, selectedPrograma).then(momentos => {
+        setDataMomento(momentos)
       })
     }
   }, [selectedPrograma])

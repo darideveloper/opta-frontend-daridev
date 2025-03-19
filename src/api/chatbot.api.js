@@ -2,20 +2,43 @@
 import axios from 'axios'
 
 // constants
-const endpoint = `${import.meta.env.VITE_API_HOST}`
+const apiBase = `${import.meta.env.VITE_API_HOST}`
 
 /**
  * Get chatbot tipo lead from api
  * 
  * @param {string} token - user auth token from zustand
- * @returns {Promise} axios promise
+ * @param {function} deleteToken - delete token function from zustand
+ * @param {string} endpoint - api apiBase
+ * @returns {Object} api json data
  */
-export const getTipoLead = (token) => {
-  return axios.get(`${endpoint}/tipolead/`, {
-    headers: {
-      Authorization: `Token ${token}`
+async function getDataApi(token, deleteToken, endpoint) {
+    // Get data from api
+    const response = await fetch(`${apiBase}/${endpoint}`, {
+      "method": "GET",
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    })
+  
+    // Validate response status
+    if (response.status !== 200) {
+      deleteToken()
     }
-  })
+  
+    const jsonData = await response.json()
+    return jsonData
+}
+
+/**
+ * Get chatbot tipo lead from api
+ * 
+ * @param {string} token - user auth token from zustand
+ * @param {function} deleteToken - delete token function from zustand
+ * @returns {Object} api json data
+ */
+export async function getTipoLead (token, deleteToken) {
+  return getDataApi(token, deleteToken, 'tipolead/')
 }
 
 /**
@@ -23,14 +46,11 @@ export const getTipoLead = (token) => {
  * 
  * @param {string} token - user auth token from zustand
  * @param {number} tipoleadId - tipo lead id
- * @returns {Promise} axios promise
+ * @param {function} deleteToken - delete token function from zustand
+ * @returns {Object} api json data
  */
-export const getPrograma = (token, tipoleadId) => {
-  return axios.get(`${endpoint}/programa/?tipo_lead_id=${tipoleadId}`, {
-    headers: {
-      Authorization: `Token ${token}`
-    }
-  })
+export async function getPrograma (token, deleteToken, tipoleadId) {
+  return getDataApi(token, deleteToken, `programa/?tipo_lead_id=${tipoleadId}`)
 }
 
 
@@ -39,14 +59,11 @@ export const getPrograma = (token, tipoleadId) => {
  * 
  * @param {string} token - user auth token from zustand
  * @param {number} programaId - programa id
- * @returns {Promise} axios promise
+ * @param {function} deleteToken - delete token function from zustand
+ * @returns {Object} api json data
  */
-export const getMomento = (token, programaId) => {
-  return axios.get(`${endpoint}/momento/?programa_id=${programaId}`, {
-    headers: {
-      Authorization: `Token ${token}`
-    }
-  })
+export const getMomento = (token, deleteToken, programaId) => {
+  return getDataApi(token, deleteToken, `momento/?programa_id=${programaId}`)
 }
 
 /**
@@ -54,14 +71,11 @@ export const getMomento = (token, programaId) => {
  * 
  * @param {string} token - user auth token from zustand
  * @param {number} momentoId - momento id
- * @returns {Promise} axios promise
+ * @param {function} deleteToken - delete token function from zustand
+ * @returns {Object} api json data
  */
-export const getSubmomento = (token, momentoId) => {
-  return axios.get(`${endpoint}/submomento/?momento_id=${momentoId}`, {
-    headers: {
-      Authorization: `Token ${token}`
-    }
-  })
+export const getSubmomento = (token, deleteToken, momentoId) => {
+  return getDataApi(token, deleteToken, `submomento/?momento_id=${momentoId}`)
 }
 
 /**
@@ -69,27 +83,20 @@ export const getSubmomento = (token, momentoId) => {
  * 
  * @param {string} token - user auth token from zustand
  * @param {number} subMomento - submomento id
- * @returns {Promise} axios promise
+ * @param {function} deleteToken - delete token function from zustand
+ * @returns {Object} api json data
  */
-export const getRespuesta = (token, subMomento) => {
-  return axios.get(`${endpoint}/respuesta/?submomento_id=${subMomento}`, {
-    headers: {
-      Authorization: `Token ${token}`
-    }
-  })
+export const getRespuesta = (token, deleteToken, subMomento) => {
+  return getDataApi(token, deleteToken, `respuesta/?submomento_id=${subMomento}`)  
 }
 
 /**
- * Get chatbot respuesta from api
+ * Get chatbot documentos from api
  * 
  * @param {string} token - user auth token from zustand
  * @param {string} tags - tags
- * @returns {Promise} axios promise
+ * @returns {Object} api json data
  */
-export const getdocumentos = (token, tags) => {
-  return axios.get(`${endpoint}/documento/?tags=${tags}`, {
-    headers: {
-      Authorization: `Token ${token}`
-    }
-  })
+export const getDocumentos = (token, deleteToken, tags) => {
+  return getDataApi(token, deleteToken, `documento/?tags=${tags}`)  
 }
