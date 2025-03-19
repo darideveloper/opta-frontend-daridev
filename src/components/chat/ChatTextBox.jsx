@@ -1,18 +1,21 @@
 // Libs
 import { useState, useEffect } from 'react'
-import { useChatStore } from "../../../stores/chat-store"
 import { getSubmomento } from "../../api/chatbot.api"
 import { getRespuesta } from "../../api/chatbot.api"
 import { getdocumentos } from "../../api/chatbot.api"
+
+// Zustand
+import { useChatStore } from "../../../stores/chat-store"
+import { useAuthStore } from '../../../stores/auth'
 
 // Components
 import Button from "../Button"
 import Input from "../Input"
 
-
 export default function ChatTextBox() {
 
   // Zustand store
+  const token = useAuthStore(state => state.token)
   const momento = useChatStore((state) => state.momento)
   const addMessage = useChatStore(state => state.addMessage)
   const resetMessages = useChatStore(state => state.resetMessages)
@@ -27,7 +30,7 @@ export default function ChatTextBox() {
     // Get tags from user message
     const tags = inputMessage.split(" ")
     const tagsString = tags.join(",")
-    getdocumentos(tagsString).then(documentos => {
+    getdocumentos(token, tagsString).then(documentos => {
 
       // Change response if there are no documents
       let response
@@ -64,7 +67,7 @@ export default function ChatTextBox() {
       resetMessages()
     } else {
       // Add messages
-      getRespuesta(subMomentId).then(respuestas => {
+      getRespuesta(token, subMomentId).then(respuestas => {
 
         let respuestasData = respuestas.data.map(respuesta => ({
           title: respuesta.titulo,
@@ -94,7 +97,7 @@ export default function ChatTextBox() {
       // Reset submoments
       setDataSubmomentos([])
     } else {
-      getSubmomento(momento.id).then(submomentos => {
+      getSubmomento(token, momento.id).then(submomentos => {
         setDataSubmomentos(submomentos.data)
       })      
     }

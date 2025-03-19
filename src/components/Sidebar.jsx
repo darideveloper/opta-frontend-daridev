@@ -10,8 +10,14 @@ import logo from "../assets/logo.webp"
 import Button from "./Button"
 import ButtonClose from "./ButtonClose"
 
+// Zustand
+import { useAuthStore } from "../../stores/auth"
+
 
 export default function Sidebar() {
+
+  // Zustand data
+  const token = useAuthStore(state => state.token)
 
   // Api data
   const [dataTipoLead, setDataTipoLead] = useState([])
@@ -36,7 +42,7 @@ export default function Sidebar() {
   useEffect(() => {
     async function loadAll() {
       try {
-        const tipoLead = await getTipoLead()
+        const tipoLead = await getTipoLead(token)
         setDataTipoLead(tipoLead.data)
         setSelectedTipoLead(tipoLead.data[0]?.id)
       } catch (error) {
@@ -51,7 +57,7 @@ export default function Sidebar() {
     if (selectedTipoLead === null) { return }
 
     // Update program options
-    getPrograma(selectedTipoLead).then(programas => {
+    getPrograma(token, selectedTipoLead).then(programas => {
       setDataPrograma(programas.data)
     })
 
@@ -68,7 +74,7 @@ export default function Sidebar() {
       setSelectedMomento({ id: null })
       setMomento({ id: null })
     } else {
-      getMomento(selectedPrograma).then(momentos => {
+      getMomento(token, selectedPrograma).then(momentos => {
         setDataMomento(momentos.data)
       })
     }
