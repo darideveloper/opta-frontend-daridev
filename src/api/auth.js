@@ -1,4 +1,5 @@
-const endpoint = `${import.meta.env.VITE_API_HOST}`
+import { getDataApi, apiBase } from './base'
+
 
 /**
  *
@@ -17,7 +18,7 @@ export async function login(username, password) {
   let response
   let jsonResponse
   try {
-    response = await fetch(`${endpoint}/login/`, {
+    response = await fetch(`${apiBase}/login/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -29,4 +30,16 @@ export async function login(username, password) {
     return ""
   }
   return jsonResponse.token
+}
+
+
+/**
+ * Get user dfata api
+ * 
+ * @param {string} token - user auth token from zustand
+ * @param {function} deleteToken - delete token function from zustand
+ * @returns {Object} api json data
+ */
+export async function getUserData (token, deleteToken) {
+  return getDataApi(token, deleteToken, 'user/')
 }

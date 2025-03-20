@@ -1,25 +1,53 @@
 
 // Libs
+import { useEffect, useState } from "react"
+import { getUserData } from "../api/auth"
+
+// Zustand
 import { useChatStore } from "../../stores/chat-store"
-import { useEffect } from "react"
+import { useAuthStore } from '../../stores/auth'
 
 // Components
-import HistoryEntry from "./HistoryEntry"
 import ButtonClose from "./ButtonClose"
 
 
 const HistoryComponent = () => {
 
   // Zustand store
+  const token = useAuthStore(state => state.token)
+  const deleteToken = useAuthStore(state => state.deleteToken)
+
   const toggleProfile = useChatStore(state => state.toggleProfile)
   const showProfile = useChatStore(state => state.showProfile)
+
+  // States
+  const [userEmail, setUserEmail] = useState('')
+  const [userName, setUserName] = useState('')
+  const [userLastName, setUserLastName] = useState('')
+  const [userIsStaff, setUserIsStaff] = useState(false)
+
+
+  // Effects
+
+  useEffect(() => {
+
+    async function loadUserData() {
+      const usersData = await getUserData(token, deleteToken)
+      const userData = usersData[0]
+      setUserEmail(userData.username)
+      setUserName(userData.first_name)
+      setUserLastName(userData.last_name)
+      setUserIsStaff(userData.is_staff)
+    }
+    loadUserData()
+  }, [])
 
   return (
     <div
       className={`
-        w-96
+        w-[300px]
         bg-white
-        h-full
+        h-auto
         px-6
         py-8
         fixed
@@ -49,12 +77,35 @@ const HistoryComponent = () => {
           items-start
           justify-start
           w-full
-          h-[88vh]
+          h-auto
           overflow-y-scroll
           pr-2
         `}
       >
-        <p>Content</p>
+        <div
+          className={`
+            user-data
+            flex
+            items-start
+            justify-start
+            flex-col
+            gap-2
+            text-lg
+          `}
+        >
+          <p>
+            <strong>Nombre: </strong>
+            {userName}
+          </p>
+          <p>
+            <strong>Apellido: </strong>
+            {userLastName}
+          </p>
+          <p>
+            <strong>Email: </strong>
+            {userEmail}
+          </p>
+        </div>
       </div>
     </div>
   )
