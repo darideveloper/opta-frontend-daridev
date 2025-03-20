@@ -2,6 +2,7 @@
 // Libs
 import { useEffect, useState } from "react"
 import { getUserData } from "../api/auth"
+import { recoverPasswordAlert } from "../../libs/alerts"
 
 // Zustand
 import { useChatStore } from "../../stores/chat-store"
@@ -10,6 +11,7 @@ import { useAuthStore } from '../../stores/auth'
 // Components
 import ButtonClose from "./ButtonClose"
 import Button from "./Button"
+import LinkButton from "./LinkButton"
 
 
 const HistoryComponent = () => {
@@ -118,6 +120,16 @@ const HistoryComponent = () => {
         >
           Cerrar sesión
         </Button>
+
+        <LinkButton
+          onClick={() => recoverPasswordAlert()}
+          className={`
+            text-center
+            mx-auto
+          `}
+        >
+          Cambiar contraseña
+        </LinkButton>
 
       </div>
     </div>

@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import { login } from '../api/auth'
+import { recoverPasswordAlert } from '../../libs/alerts'
 
 // Components
 import Input from '../components/Input'
 import Button from '../components/Button'
+import LinkButton from '../components/LinkButton'
 
 // Media
 import logo from "../assets/logo.webp"
@@ -19,9 +21,6 @@ export default function Login() {
   // Local state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  // Data
-  const contactEmail = "test@gmail.com"
 
   // Zustand store
   const setToken = useAuthStore(state => state.setToken)
@@ -111,39 +110,11 @@ export default function Login() {
           Iniciar Sesión
         </Button>
 
-        <button
-          className={`
-            text-purple
-            hover:underline
-          `}
-          onClick={() => {
-            Swal.fire({
-              title: 'Recuperar Contraseña',
-              html: `
-                <p>
-                  Contacta a soporte <a href="mailto:${contactEmail}">${contactEmail}</a> para recuperar tu contraseña.
-                </p>
-              `,
-              icon: 'info',
-              confirmButtonText: 'Copiar Correo',
-              showDenyButton: true,
-              denyButtonText: 'Cancelar',
-            }).then((result) => {
-              if (result.isConfirmed) {
-                navigator.clipboard.writeText(contactEmail).then(() => {
-                  Swal.fire({
-                    title: 'Correo Copiado',
-                    icon: 'success',
-                    confirmButtonText: 'Regresar',
-                  })
-                })
-              }
-            })
-          }}
-          type="button"
+        <LinkButton
+          onClick={() => recoverPasswordAlert()}
         >
           ¿Olvidaste tu contraseña?
-        </button>
+        </LinkButton>
       </form>
     </div>
   )
