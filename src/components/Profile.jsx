@@ -9,6 +9,7 @@ import { useAuthStore } from '../../stores/auth'
 
 // Components
 import ButtonClose from "./ButtonClose"
+import Button from "./Button"
 
 
 const HistoryComponent = () => {
@@ -106,6 +107,18 @@ const HistoryComponent = () => {
             {userEmail}
           </p>
         </div>
+
+        <Button
+          className={`
+            text-center
+            font-bold
+            mt-4
+          `}
+          onClick={() => deleteToken()}
+        >
+          Cerrar sesión
+        </Button>
+
       </div>
     </div>
   )

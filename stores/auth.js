@@ -6,5 +6,8 @@ export const useAuthStore = create((set) => ({
     sessionStorage.setItem("token", token)
     set({ token })
   },
-  deleteToken: () => set({ token: "" }),
+  deleteToken: () => { 
+    sessionStorage.setItem("token", "")
+    set({ token: "" }) 
+  }
 }))
