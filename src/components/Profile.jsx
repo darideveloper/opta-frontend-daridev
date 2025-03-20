@@ -73,7 +73,6 @@ const HistoryComponent = () => {
       {/* History items */}
       <div
         className={`
-          history-entries
           flex
           flex-col
           gap-2
@@ -81,7 +80,6 @@ const HistoryComponent = () => {
           justify-start
           w-full
           h-auto
-          overflow-y-scroll
           pr-2
         `}
       >
@@ -110,11 +108,26 @@ const HistoryComponent = () => {
           </p>
         </div>
 
+        {
+          userIsStaff &&
+          <Button
+            className={`
+              text-center
+              font-bold
+              mt-4
+            `}
+            onClick={() => window.open(`${import.meta.env.VITE_DASHBOARD}`, '_blank')}
+            isActive={true}
+            isActiveHover={true}
+          >
+            Dashboard
+          </Button>
+        }
+
         <Button
           className={`
             text-center
             font-bold
-            mt-4
           `}
           onClick={() => deleteToken()}
         >
