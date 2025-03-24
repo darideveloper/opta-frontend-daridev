@@ -22,6 +22,7 @@ const HistoryComponent = () => {
 
   const toggleProfile = useChatStore(state => state.toggleProfile)
   const showProfile = useChatStore(state => state.showProfile)
+  const setMomento = useChatStore(state => state.setMomento)
 
   // States
   const [userEmail, setUserEmail] = useState('')
@@ -129,7 +130,10 @@ const HistoryComponent = () => {
             text-center
             font-bold
           `}
-          onClick={() => deleteToken()}
+          onClick={() => { 
+            deleteToken()
+            setMomento(null)
+          }}
         >
           Cerrar sesión
         </Button>

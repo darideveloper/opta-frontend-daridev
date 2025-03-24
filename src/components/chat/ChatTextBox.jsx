@@ -19,6 +19,7 @@ export default function ChatTextBox() {
   const deleteToken = useAuthStore(state => state.deleteToken)
 
   const momento = useChatStore((state) => state.momento)
+  const setMomento = useChatStore((state) => state.setMomento)
   const addMessage = useChatStore(state => state.addMessage)
   const resetMessages = useChatStore(state => state.resetMessages)
 
@@ -94,6 +95,7 @@ export default function ChatTextBox() {
     }
   }
 
+  // Effects
   useEffect(() => {
     if (momento === null || momento.id === null) {
       // Reset submoments
