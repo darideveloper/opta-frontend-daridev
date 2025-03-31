@@ -75,6 +75,7 @@ export default function ChatTextBox() {
         let respuestasData = respuestas.map(respuesta => ({
           title: respuesta.titulo,
           content: respuesta.contenido,
+          image: respuesta.image,
           documentos: respuesta.documento ? [respuesta.documento] : [],
         }))
 

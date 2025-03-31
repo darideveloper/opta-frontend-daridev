@@ -14,6 +14,8 @@ import Document from "./Document"
  * @param {Array} props.steps - List of steps
  * @param {string} props.steps[].title - Step title
  * @param {string} props.steps[].content - Step content
+ * @param {string} props.steps[].image - Step image
+ * @returns {JSX.Element} - StepsCard component
  */
 export default function StepsCards({ steps }) {
 
@@ -24,7 +26,7 @@ export default function StepsCards({ steps }) {
   return (
     <>
       {
-        visibleStepsList.map(({ title, content, documentos }, index) => {
+        visibleStepsList.map(({ title, content, image, documentos }, index) => {
 
           const isLastStep = index === visibleStepsList.length - 1
           const moreSteps = steps.length - visibleSteps
@@ -39,6 +41,21 @@ export default function StepsCards({ steps }) {
 
                 {/* Main text */}
                 <p>{content}</p>
+
+                {
+                  image 
+                  &&
+                  <img 
+                    className={`
+                      rounded-md
+                      max-w-full
+                      w-[800px]
+                      my-12
+                      shadow-lg
+                    `}
+                    src={image}
+                  />
+                }
 
                 {/* Next button */}
                 <div className="flex space-x-2 mt-2">
@@ -55,6 +72,7 @@ export default function StepsCards({ steps }) {
                   </button>
                 </div>
               </div>
+
 
               {/* Documents */}
               <div
