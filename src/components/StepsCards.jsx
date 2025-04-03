@@ -3,9 +3,12 @@ import { CircleChevronDown } from "lucide-react"
 
 // Libs
 import { useState } from "react"
+import remarkGfm from 'remark-gfm'
 
-// COmponents
+// Components
 import Document from "./Document"
+import ReactMarkdown from 'react-markdown'
+
 
 /**
  * StepsCard component (render a list of steps with "more" button)
@@ -39,8 +42,17 @@ export default function StepsCards({ steps }) {
                 {/* Title */}
                 <div className="font-medium text-purple mb-2">{title}</div>
 
-                {/* Main text */}
-                <p>{content}</p>
+                {/* Main markdown text */}
+                <div
+                  className={`
+                    markdown
+                  `}
+                >
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    children={content}
+                  />
+                </div>
 
                 {
                   image 
