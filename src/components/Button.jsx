@@ -35,7 +35,6 @@ export default function Button({
         duration-200
         ${isActive && "bg-purple text-white"}
         ${!disabled && (isActive && isActiveHover) ? "hover:scale-105 hover:opacity-80" : "hover:bg-purple hover:text-white"}
-        capitalize
         ${styles[type]}
         ${disabled && 'opacity-50 cursor-default'}
         ${className}

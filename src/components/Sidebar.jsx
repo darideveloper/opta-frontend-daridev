@@ -44,7 +44,6 @@ export default function Sidebar() {
     async function loadAll() {
       try {
         const tipoLead = await getTipoLead(token, deleteToken)
-        console.log({tipoLead})
         setDataTipoLead(tipoLead)
         setSelectedTipoLead(tipoLead[0]?.id)
       } catch (error) {
@@ -60,7 +59,6 @@ export default function Sidebar() {
 
     // Update program options
     getPrograma(token, deleteToken, selectedTipoLead).then(programas => {
-      console.log({programas})
       setDataPrograma(programas)
     })
 
@@ -171,7 +169,7 @@ export default function Sidebar() {
           {/* Render programas of current tipo lead */}
           {dataPrograma.map((program) => (
             <option key={program.id} value={program.id}>
-              {program.nombre.charAt(0).toUpperCase() + program.nombre.slice(1).toLowerCase()}
+              {program.nombre}
             </option>
           ))}
         </select>
