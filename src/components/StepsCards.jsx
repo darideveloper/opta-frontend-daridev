@@ -2,7 +2,7 @@
 import { CircleChevronDown } from "lucide-react"
 
 // Libs
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import remarkGfm from 'remark-gfm'
 
 // Components
@@ -25,6 +25,16 @@ export default function StepsCards({ steps }) {
   const [visibleSteps, setVisibleSteps] = useState(1)
 
   const visibleStepsList = steps.slice(0, visibleSteps)
+
+  useEffect(() => {
+    setTimeout(() => {
+      // Add target blank to all markdown links
+      const links = document.querySelectorAll('.markdown a')
+      links.forEach(link => {
+        link.setAttribute('target', '_blank')
+      })
+    }, 500)
+  }, [steps, visibleSteps])
 
   return (
     <>
