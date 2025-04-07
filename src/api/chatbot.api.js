@@ -1,4 +1,6 @@
 import { getDataApi } from './base'
+const apiProject = "demo"
+
 
 /**
  * Get chatbot tipo lead from api
@@ -8,7 +10,7 @@ import { getDataApi } from './base'
  * @returns {Object} api json data
  */
 export async function getTipoLead (token, deleteToken) {
-  return getDataApi(token, deleteToken, 'tipolead/')
+  return getDataApi(token, deleteToken, `${apiProject}/tipolead/`)
 }
 
 /**
@@ -20,7 +22,7 @@ export async function getTipoLead (token, deleteToken) {
  * @returns {Object} api json data
  */
 export async function getPrograma (token, deleteToken, tipoleadId) {
-  return getDataApi(token, deleteToken, `programa/?tipo_lead_id=${tipoleadId}`)
+  return getDataApi(token, deleteToken, `${apiProject}/programa/?tipo_lead_id=${tipoleadId}`)
 }
 
 
@@ -33,7 +35,7 @@ export async function getPrograma (token, deleteToken, tipoleadId) {
  * @returns {Object} api json data
  */
 export const getMomento = (token, deleteToken, programaId) => {
-  return getDataApi(token, deleteToken, `momento/?programa_id=${programaId}`)
+  return getDataApi(token, deleteToken, `${apiProject}/momento/?programa_id=${programaId}`)
 }
 
 /**
@@ -45,7 +47,7 @@ export const getMomento = (token, deleteToken, programaId) => {
  * @returns {Object} api json data
  */
 export const getSubmomento = (token, deleteToken, momentoId) => {
-  return getDataApi(token, deleteToken, `submomento/?momento_id=${momentoId}`)
+  return getDataApi(token, deleteToken, `${apiProject}/submomento/?momento_id=${momentoId}`)
 }
 
 /**
@@ -57,7 +59,7 @@ export const getSubmomento = (token, deleteToken, momentoId) => {
  * @returns {Object} api json data
  */
 export const getRespuesta = (token, deleteToken, subMomento) => {
-  return getDataApi(token, deleteToken, `respuesta/?submomento_id=${subMomento}`)  
+  return getDataApi(token, deleteToken, `${apiProject}/respuesta/?submomento_id=${subMomento}`)  
 }
 
 /**
@@ -68,5 +70,5 @@ export const getRespuesta = (token, deleteToken, subMomento) => {
  * @returns {Object} api json data
  */
 export const getDocumentos = (token, deleteToken, tags) => {
-  return getDataApi(token, deleteToken, `documento/?tags=${tags}`)  
+  return getDataApi(token, deleteToken, `${apiProject}/documento/?tags=${tags}`)  
 }
