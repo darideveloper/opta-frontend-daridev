@@ -1,5 +1,5 @@
 import { getDataApi } from './base'
-const apiProject = "demo"
+const apiProject = import.meta.env.VITE_API_PROJECT
 
 
 /**
